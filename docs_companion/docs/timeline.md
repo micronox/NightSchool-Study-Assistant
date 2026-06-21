@@ -1,6 +1,10 @@
 # Timeline
 
-## June 21, 2026
+## June 19-21, 2026
+
+- **Friday, June 19** - Work effectively branched into a protected recovery and architecture-defense lane.
+- **Saturday, June 20** - The implementation path pivoted repeatedly as hidden constraints surfaced through troubleshooting and review.
+- **Sunday, June 21 (early)** - Kopia established the first trustworthy rollback boundary for a protected local lane.
 
 - **03:17:58** - ADR-001 proposed a dual-instance Hermes isolation design and explicitly held acceptance behind Codex review.
 - **Phase 0** - WSL access, the primary Hermes baseline, Ollama reachability, available ports, dependency records, and cleanup were verified.
@@ -13,6 +17,6 @@
 
 ## Packet cutoff
 
-Verified: toolchain baseline, Phase 0, Hermes source findings, architecture redlines, and the revised Phase 1A design.
+Verified: toolchain baseline, rollback footing, Phase 0, Hermes source findings, architecture redlines, and the revised Phase 1A design.
 
 Prepared but not yet proven complete: the first controlled NightSchool Study Assistant Hermes launch, post-launch isolation checks, full Kopia policy implementation, and later Study Assistant product phases.

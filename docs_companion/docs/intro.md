@@ -4,7 +4,7 @@ This site is the presentation-layer companion to the NightSchool Study Assistant
 
 ## Purpose
 
-The packet documents the June 21, 2026 recovery, verification, and architecture-defense work that established a safer first-slice plan for the NightSchool Study Assistant.
+The packet documents the June 19-21, 2026 recovery, verification, and architecture-defense work that established a safer first-slice plan for the NightSchool Study Assistant.
 
 ## How to use this site
 

@@ -2,7 +2,7 @@
 
 Mission Control documentation, architecture-defense materials, and executive deliverables for the NightSchool Study Assistant.
 
-This repository captures the verified June 21, 2026 recovery, architecture review, and preproduction packaging work that turned an uncertain local environment into a documented baseline and a safer execution plan.
+This repository captures the June 19-21, 2026 recovery, architecture review, and preproduction packaging work that turned an uncertain local environment into a documented baseline and a safer execution plan.
 
 ## What this repo is for
 
