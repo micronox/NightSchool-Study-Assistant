@@ -1,0 +1,15 @@
+{
+  "name": "nightschool-study-assistant-docs",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Docs companion for the NightSchool Study Assistant architecture defense and preproduction packet.",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2"
+  }
+}
