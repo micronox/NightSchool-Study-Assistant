@@ -1,0 +1,17 @@
+# Temporary / cache locations
+C:\Users\larry\AppData\Local\Temp
+C:\Users\larry\AppData\Local\Microsoft\Windows\INetCache
+
+# Common development caches
+**\__pycache__\
+**\.mypy_cache\
+**\.pytest_cache\
+**\.ruff_cache\
+**\.next\cache\
+**\node_modules\
+**\.venv\
+**\venv\
+
+# Windows / filesystem metadata
+L:\System Volume Information
+L:\$RECYCLE.BIN

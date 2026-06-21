@@ -15,7 +15,7 @@ Turn the packet into a guided, website-like reading experience:
 
 After the GitHub repo exists, replace the placeholder repo URL in the docs with the final location:
 
-`https://github.com/<owner>/NightSchool-Study-Assistant`
+`https://github.com/micronox/NightSchool-Study-Assistant`
 
 ## Current scaffold
 

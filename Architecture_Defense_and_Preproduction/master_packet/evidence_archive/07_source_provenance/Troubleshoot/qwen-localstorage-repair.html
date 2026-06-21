@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<body>
+<pre id="out">repairing</pre>
+<script>
+const out = document.getElementById('out');
+try {
+  localStorage.setItem('hermes.desktop.composer.model', 'qwen3.6:latest');
+  localStorage.setItem('hermes.desktop.composer.provider', 'custom');
+
+  const raw = localStorage.getItem('hermes.desktop.model-presets');
+  const presets = raw ? JSON.parse(raw) : {};
+  const oldKey = 'custom::qwen3.6:35b-a3b';
+  const newKey = 'custom::qwen3.6:latest';
+  const oldPreset = presets[oldKey] || {};
+  delete presets[oldKey];
+  presets[newKey] = { effort: 'medium', ...oldPreset };
+  localStorage.setItem('hermes.desktop.model-presets', JSON.stringify(presets));
+
+  out.textContent = JSON.stringify({
+    model: localStorage.getItem('hermes.desktop.composer.model'),
+    provider: localStorage.getItem('hermes.desktop.composer.provider'),
+    presets: JSON.parse(localStorage.getItem('hermes.desktop.model-presets') || '{}')
+  }, null, 2);
+} catch (err) {
+  out.textContent = String((err && err.stack) || err);
+}
+</script>
+</body>
+</html>

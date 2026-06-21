@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<body>
+<pre id="out">starting</pre>
+<script>
+const out = document.getElementById('out');
+try {
+  const payload = {
+    model: localStorage.getItem('hermes.desktop.composer.model'),
+    provider: localStorage.getItem('hermes.desktop.composer.provider'),
+    presets: localStorage.getItem('hermes.desktop.model-presets')
+  };
+  out.textContent = JSON.stringify(payload, null, 2);
+} catch (err) {
+  out.textContent = String((err && err.stack) || err);
+}
+</script>
+</body>
+</html>

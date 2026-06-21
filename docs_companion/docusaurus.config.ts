@@ -3,11 +3,11 @@ import type { Config } from '@docusaurus/types';
 const config: Config = {
   title: 'NightSchool Study Assistant',
   tagline: 'Architecture defense and preproduction packet',
-  url: 'https://github.com',
+  url: 'https://micronox.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  organizationName: '<owner>',
+  organizationName: 'micronox',
   projectName: 'NightSchool-Study-Assistant',
   presets: [
     [
@@ -35,7 +35,7 @@ const config: Config = {
           label: 'Packet',
         },
         {
-          href: 'https://github.com/<owner>/NightSchool-Study-Assistant',
+          href: 'https://github.com/micronox/NightSchool-Study-Assistant',
           label: 'GitHub',
           position: 'right',
         },

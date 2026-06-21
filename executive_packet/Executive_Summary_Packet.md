@@ -4,7 +4,7 @@
 
 Repository:
 
-`https://github.com/<owner>/NightSchool-Study-Assistant`
+`https://github.com/micronox/NightSchool-Study-Assistant`
 
 ## What changed on June 21, 2026
 
@@ -49,6 +49,6 @@ Not yet proven complete in the packet:
 
 ## Companion materials
 
-- Canonical archive: `01_github_source_of_truth/`
-- Docs companion: `02_docusaurus_companion/`
-- Share-safe packet: `external_share_candidate/` inside the source-of-truth repo structure
+- Canonical archive: `Architecture_Defense_and_Preproduction/master_packet/`
+- Docs companion: `docs_companion/`
+- Share-safe packet: `Architecture_Defense_and_Preproduction/external_share_candidate/`

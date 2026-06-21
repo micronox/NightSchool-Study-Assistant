@@ -1,0 +1,9 @@
+{
+  "integrations": {
+    "codex": {
+      "models": [
+        "qwen3-coder:30b"
+      ]
+    }
+  }
+}
