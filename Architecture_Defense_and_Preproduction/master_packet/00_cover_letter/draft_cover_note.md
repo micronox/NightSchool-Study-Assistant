@@ -1,4 +1,4 @@
-Hi Drew,
+Hi,
 
 Following up on our conversation, I assembled a short proof packet covering what changed this weekend and why I chose to stabilize the operating environment before pushing visible product work.
 

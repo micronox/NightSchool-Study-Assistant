@@ -3,7 +3,7 @@
 - Date: 2026-06-21
 - Time: 09:35:07 America/Chicago
 - Priority: highest
-- Audience: Drew at Gauntlet AI
+- Audience: Gauntlet AI recipient
 - Working target: `L:\_Hermes_oneshot_Commander_Workshop\Gauntlet_AI_PostMortum`
 
 ## Mission
@@ -47,7 +47,7 @@ Gauntlet_AI_PostMortum
 
 ## What to optimize for
 
-- Drew must be able to understand the story quickly from the top-level docs.
+- The recipient must be able to understand the story quickly from the top-level docs.
 - The deeper folders must prove the claims with copied markdown and supporting knowledge artifacts.
 - This is a show-don't-tell packet.
 - Keep the top-level narrative clean.

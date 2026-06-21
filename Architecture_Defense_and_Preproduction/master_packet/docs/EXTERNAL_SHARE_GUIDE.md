@@ -3,9 +3,9 @@
 This packet now has two intended forms:
 
 1. The full working packet in the repository root, which preserves provenance and internal review context.
-2. `external_share_candidate/`, which is the recommended starting package for Drew.
+2. `external_share_candidate/`, which is the recommended starting package for first-pass external review.
 
-## Recommended package for Drew
+## Recommended package for External Review
 
 Send `external_share_candidate/` first. It contains:
 
@@ -28,10 +28,10 @@ The curated packet tells the story in 28 files. The raw provenance folder curren
 ## Owner actions before sending
 
 1. Personalize `00_cover_letter/draft_cover_note.md` in Larry's voice.
-2. Decide whether Drew needs the original Gauntlet or `myLearningSidekick` pitch as independent continuity evidence.
-3. Leave the 450 GB recovery claim out of the main packet unless Drew specifically needs it. Pre-format troubleshooting evidence exists from the June 11, 2026 and June 17, 2026 dependency/repository audits, with a timestamped archive at `K:\Onyx_Repo\Troubleshoot`, but that deeper proof is optional rather than required for the first handoff.
+2. Decide whether the recipient needs the original Gauntlet or `myLearningSidekick` pitch as independent continuity evidence.
+3. Leave the 450 GB recovery claim out of the main packet unless the recipient specifically needs it. Pre-format troubleshooting evidence exists from the June 11, 2026 and June 17, 2026 dependency/repository audits, with a timestamped archive at `K:\Onyx_Repo\Troubleshoot`, but that deeper proof is optional rather than required for the first handoff.
 4. Leave post-launch claims out until the Phase 1A operational checks have actually passed.
-5. Share the full root packet only if Drew explicitly needs deeper provenance.
+5. Share the full root packet only if the recipient explicitly needs deeper provenance.
 
 ## Suggested send order
 

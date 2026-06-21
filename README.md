@@ -7,7 +7,7 @@ This repository captures the verified June 21, 2026 recovery, architecture revie
 ## What this repo is for
 
 - preserve the full architecture-defense and preproduction packet as the canonical record
-- provide a cleaner external-share version for Drew and other first-pass readers
+- provide a cleaner external-share version for first-pass external readers
 - host a website-like documentation layer that can become the public-facing narrative surface
 - maintain an executive packet that can later be exported to PDF
 

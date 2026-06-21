@@ -1,6 +1,6 @@
 # Gauntlet AI Postmortem Packet
 
-This is the share-ready candidate packet for Drew.
+This is the share-ready candidate packet for first-pass external review.
 
 ## What is included
 
