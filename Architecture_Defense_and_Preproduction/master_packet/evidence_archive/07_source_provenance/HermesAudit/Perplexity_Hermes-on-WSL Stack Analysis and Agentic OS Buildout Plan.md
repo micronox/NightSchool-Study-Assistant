@@ -33,9 +33,9 @@ Hermes Desktop surfaces file pickers and directory views rooted in the host OS w
 In practice this leads to mixed semantics:
 
 - File browsing in the desktop UI is Windows‑rooted (e.g., `C:\Users\<you>`), unless a plugin explicitly proxies into a remote path.[^2]
-- Tool execution for core Hermes skills is bound to the gateway runtime, so file tools see the backend filesystem (`/home/larry/...` in WSL in your stack).[^6][^1]
+- Tool execution for core Hermes skills is bound to the gateway runtime, so file tools see the backend filesystem (`$WSL_USER_HOME/...` in WSL in your stack).[^6][^1]
 
-This matches what was observed in the spec: Desktop showing Windows home while tool output clearly referenced `/home/larry/.hermes/...` paths.
+This matches what was observed in the spec: Desktop showing Windows home while tool output clearly referenced `$WSL_USER_HOME/.hermes/...` paths.
 
 ### 1.3 Separation of file browsing vs tool execution
 
@@ -505,4 +505,6 @@ Want to make m...
 23. [Changelog](https://github.com/RedWoodOG/Hermes-Desktop/blob/main/readme.md) - Hermes_Desktop. Contribute to RedWoodOG/Hermes-Desktop development by creating an account on GitHub.
 
 24. [Hermes Agent Just Stopped Being a CLI Tool (v0.16)](https://www.youtube.com/watch?v=KC1bnvu2e74) - Hermes Agent v0.16 just shipped a native desktop app, a remote gateway architecture, and a full admi...
+
+
 

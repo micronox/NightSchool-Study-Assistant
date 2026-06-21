@@ -1,9 +1,9 @@
 # NightSchool — Local Hermes Study Companion
 ## PRD, Isolation Architecture, Architecture Defense System, Context Management, and Session-Bounded Execution
 
-**Owner:** Larry
+**Owner:** operator
 **Target hardware:** Local workstation, Blackwell RTX 6000 (full GPU), 96GB RAM, Nous subscription available for frontier-model overflow
-**Confirmed dir:** `L:\WSL_Projects_Folder\Nightschool_Study\` — outside `/larry` user scope, contains `Prototype_workingFiles\` and `App_Final_Deliverable\`
+**Confirmed dir:** `$PROJECTS_ROOT\Nightschool_Study\` — outside `/operator` user scope, contains `Prototype_workingFiles\` and `App_Final_Deliverable\`
 **Date:** 2026-06-21 (v2)
 **Status:** Draft for review — supersedes v1
 **File location:** `Prototype_workingFiles\PRD\NightSchool_PRD_and_Execution_System.md` (this is always the master — filename never gets a version number appended)
@@ -60,7 +60,7 @@ This revision adds, per your direction:
 Your screenshot confirms the structure. This replaces the v1 assumption of a single `~/hermes-nightschool` root with your actual layout:
 
 ```
-L:\WSL_Projects_Folder\Nightschool_Study\
+`$PROJECTS_ROOT\Nightschool_Study\
 ├── Prototype_workingFiles\      ← Hermes' live working directory. All agent
 │                                   read/write, revisions, experiments,
 │                                   broken builds, half-finished features
@@ -74,7 +74,7 @@ L:\WSL_Projects_Folder\Nightschool_Study\
                                     GitHub.
 ```
 
-**Why this matters for isolation:** putting this whole tree under `L:\` rather than under your Windows user profile or your primary Hermes install path is itself the isolation boundary — it's a physically separate drive root from wherever your primary/worker Hermes lives, which satisfies "live outside `/larry` as much as possible for file management and exposure." Inside WSL, this will mount as something like `/mnt/l/WSL_Projects_Folder/Nightschool_Study/` — confirm the exact WSL mount point in Phase 0 (don't assume `/mnt/l/`; verify it).
+**Why this matters for isolation:** putting this whole tree under `L:\` rather than under your Windows user profile or your primary Hermes install path is itself the isolation boundary — it's a physically separate drive root from wherever your primary/worker Hermes lives, which satisfies "live outside `/operator` as much as possible for file management and exposure." Inside WSL, this will mount as something like `/mnt/l/WSL_Projects_Folder/Nightschool_Study/` — confirm the exact WSL mount point in Phase 0 (don't assume `/mnt/l/`; verify it).
 
 **Promotion rule (Prototype → Final):** nothing moves from `Prototype_workingFiles` to `App_Final_Deliverable` without passing a Verification card. This is the same Done-with-evidence discipline as the rest of the system, applied specifically to the one transition that has real consequences (GitHub push). Treat `App_Final_Deliverable` the way you'd treat a release branch — agents propose, controller (you, or a controller-thread agent acting on your sign-off) promotes.
 
@@ -188,7 +188,7 @@ This routing table is a Phase 1 decision-gate item, not locked yet — flagged a
 Pulled out explicitly per your request, organized by lane/phase, so a session never stalls mid-task waiting on a human-only action it can't itself perform (account creation, clicking "authorize," copying a token). Do these *ahead of* the phase that needs them, not during.
 
 ### Before Phase 0 (Infra)
-- [ ] Confirm exact WSL mount path for `L:\WSL_Projects_Folder\Nightschool_Study\` (run `wsl` then `ls /mnt/l/` or equivalent to confirm the drive letter mounts as expected — don't assume).
+- [ ] Confirm exact WSL mount path for `$PROJECTS_ROOT\Nightschool_Study\` (run `wsl` then `ls /mnt/l/` or equivalent to confirm the drive letter mounts as expected — don't assume).
 - [ ] Confirm your primary Hermes install's exact root path and config location (for the drift-check baseline).
 - [ ] Confirm Python/Node version manager you want NightSchool's Prototype env to use (pyenv/venv, nvm, etc.) — same as primary, or deliberately different?
 
@@ -231,7 +231,7 @@ Pulled out explicitly per your request, organized by lane/phase, so a session ne
 You're building a personal multi-agent study/research companion (NightSchool) on top of a local, isolated Hermes install. The build needs to (a) respect a confirmed Prototype/Final folder separation feeding a GitHub push, (b) defend its own architectural boundaries actively rather than just checking them once, (c) be broken into context-appropriately-sized, session-bounded chunks usable by both Codex and Claude, and (d) route inference across local GPU and Nous subscription deliberately rather than defaulting blindly to one.
 
 ### Goals
-1. Stand up an isolated NightSchool Hermes instance rooted at `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\`, zero shared state with the primary install — verified, not assumed.
+1. Stand up an isolated NightSchool Hermes instance rooted at `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\`, zero shared state with the primary install — verified, not assumed.
 2. Stand up a standing **Architecture Defense lane (Lane F)** that runs recurring drift/boundary/dependency checks, not a one-time gate.
 3. Produce a session-bounded, context-budgeted task breakdown (kanban-ready) usable interchangeably by Codex and Claude sessions, each card stating its own context-read footprint.
 4. Replicate the six-agent architecture + Mission Control dashboard locally, with GPU-local inference as default and Nous as deliberate escalation, no VPS/Tailscale dependency for v1.
@@ -318,7 +318,7 @@ No hard deadline. Phasing below replaces a calendar — each phase gates on the 
 
 ### Phase 0 — Verification Before Anything Else
 *Context: reads only §1 + your confirmed dir structure. No prior history needed.*
-- [ ] Card: Confirm WSL mount path for `L:\WSL_Projects_Folder\Nightschool_Study\`.
+- [ ] Card: Confirm WSL mount path for `$PROJECTS_ROOT\Nightschool_Study\`.
 - [ ] Card: Locate and document primary Hermes install path, config root, venv/node scope (drift-check baseline for Lane F).
 - [ ] Card: Audit local port usage, reserve NightSchool range.
 - [ ] Card: Stand up Lane F skeleton — create the isolation manifest file and `DEPENDENCIES.md` (empty, ready to populate).
@@ -395,3 +395,5 @@ No hard deadline. Phasing below replaces a calendar — each phase gates on the 
 
 ## 11. Immediate Next Action
 Phase 0 is the only thing that should happen next: confirm the WSL mount path, document your primary Hermes install's exact path/config behavior, and stand up the empty Lane F skeleton (manifest + `DEPENDENCIES.md`). Everything else is gated behind this card closing with evidence — and behind the §6 "Before Phase 0" user actions being done first.
+
+

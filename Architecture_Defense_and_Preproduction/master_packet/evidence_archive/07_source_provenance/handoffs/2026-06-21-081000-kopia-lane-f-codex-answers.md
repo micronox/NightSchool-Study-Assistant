@@ -108,11 +108,11 @@ Relevant flags:
 
 Kopia restore is not going to spontaneously redirect:
 
-- `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\...`
+- `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\...`
 
 into:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\...`
+- `$APPDATA_ROAMING_ROOT\Hermes\...`
 
 unless the operator explicitly chooses the primary path as the restore target.
 
@@ -154,8 +154,8 @@ kopia restore <snapshot-or-entry> C:\tmp\kopia-verify\nightschool-hermes-home
 
 Yes. The installed CLI is already connected to the live repository:
 
-- config file: `C:\Users\larry\AppData\Roaming\kopia\repository.config`
-- storage path: `E:\KopiaRepo`
+- config file: `$APPDATA_ROAMING_ROOT\kopia\repository.config`
+- storage path: `$KOPIA_REPO`
 
 So pre-launch snapshots can be triggered directly with `kopia snapshot create <path>`.
 
@@ -175,11 +175,11 @@ From installed `kopia snapshot create --help`:
 For the primary Hermes baseline:
 
 ```powershell
-kopia snapshot create --description "Lane F pre-launch baseline: primary Hermes userData" --tags lanef:baseline --tags scope:primary-hermes --tags kind:userdata --json "C:\Users\larry\AppData\Roaming\Hermes"
+kopia snapshot create --description "Lane F pre-launch baseline: primary Hermes userData" --tags lanef:baseline --tags scope:primary-hermes --tags kind:userdata --json "`$APPDATA_ROAMING_ROOT\Hermes"
 ```
 
 ```powershell
-kopia snapshot create --description "Lane F pre-launch baseline: primary Hermes home" --tags lanef:baseline --tags scope:primary-hermes --tags kind:home --json "C:\Users\larry\.hermes"
+kopia snapshot create --description "Lane F pre-launch baseline: primary Hermes home" --tags lanef:baseline --tags scope:primary-hermes --tags kind:home --json "`$USER_HOME\.hermes"
 ```
 
 ### Recommended PowerShell launcher integration
@@ -187,7 +187,7 @@ kopia snapshot create --description "Lane F pre-launch baseline: primary Hermes 
 Use the explicit CLI path inside the launcher to avoid PATH dependence:
 
 ```powershell
-$KopiaExe = "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe"
+$KopiaExe = "`$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe"
 
 & $KopiaExe snapshot create `
   --description "Lane F pre-launch baseline: primary Hermes userData" `
@@ -195,7 +195,7 @@ $KopiaExe = "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopi
   --tags scope:primary-hermes `
   --tags kind:userdata `
   --json `
-  "C:\Users\larry\AppData\Roaming\Hermes"
+  "`$APPDATA_ROAMING_ROOT\Hermes"
 
 & $KopiaExe snapshot create `
   --description "Lane F pre-launch baseline: primary Hermes home" `
@@ -203,7 +203,7 @@ $KopiaExe = "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopi
   --tags scope:primary-hermes `
   --tags kind:home `
   --json `
-  "C:\Users\larry\.hermes"
+  "`$USER_HOME\.hermes"
 ```
 
 ### Optional verification commands
@@ -211,11 +211,11 @@ $KopiaExe = "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopi
 To view snapshot history for a specific source:
 
 ```powershell
-kopia snapshot list --all --json "C:\Users\larry\AppData\Roaming\Hermes"
+kopia snapshot list --all --json "`$APPDATA_ROAMING_ROOT\Hermes"
 ```
 
 ```powershell
-kopia snapshot list --all --json "C:\Users\larry\.hermes"
+kopia snapshot list --all --json "`$USER_HOME\.hermes"
 ```
 
 ### Conclusion
@@ -251,7 +251,7 @@ Use exact path arguments for:
 
 This is a good design and should be kept narrow to:
 
-- `L:\WSL_Projects_Folder\Nightschool_Study\`
+- `$PROJECTS_ROOT\Nightschool_Study\`
 
 not the whole `L:\` drive.
 
@@ -278,4 +278,6 @@ not the whole `L:\` drive.
 ### Net result
 
 Claude's Lane F Kopia design is **approved with minor operational redlines, not structural blockers**.
+
+
 

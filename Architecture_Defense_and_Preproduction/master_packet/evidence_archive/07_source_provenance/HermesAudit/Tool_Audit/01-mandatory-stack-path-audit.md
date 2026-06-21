@@ -61,7 +61,7 @@ nothing else works. It has three layers of concern:
 **Runtime authority:** WSL2 Ubuntu-24.04 is the only authoritative Hermes backend. The
 Windows Hermes Desktop is a thin Electron client that connects to the WSL gateway over
 HTTP/WebSocket on port 9119. All config, skills, memory, sessions, jobs, and provider
-wiring live in `/home/larry/.hermes`. The Desktop's `%APPDATA%\Hermes\connection.json`
+wiring live in `$WSL_USER_HOME/.hermes`. The Desktop's `%APPDATA%\Hermes\connection.json`
 is disposable client metadata, not runtime authority.
 
 **Profile architecture:** Hermes profiles are separate homes under `~/.hermes/profiles/<name>`,
@@ -210,7 +210,7 @@ CUSTOM_MODEL=qwen3.6:35b-a3b
 mkdir -p ~/projects/clients/<clientname>/<repo>
 
 # Git identity per client:
-git config user.name "Larry <contract identity>"
+git config user.name "operator <contract identity>"
 git config user.email "<client-appropriate email>"
 # Set these locally per repo, not globally
 ```
@@ -317,3 +317,5 @@ profiles: [global]
 *Source cross-references: `hermes_perplexity_research.md` §4–6, `Perplex_1` §1.1–1.3,
 `Perplex_2_project-workflow` §1–4, `Perplex_3_memory` §1–4, `Perplex_4_client-work` §1–4,
 `Perplexity_Hermes-on-WSL` §2–7, `steps/01-mandatory-stack-path.md`*
+
+

@@ -15,9 +15,9 @@
 1. Use `HERMES_DESKTOP_USER_DATA_DIR` for NightSchool desktop-state isolation.
 2. Use `HERMES_HOME` for NightSchool config/log/profile isolation.
 3. Reuse the existing Hermes agent code root with:
-   - `HERMES_DESKTOP_HERMES_ROOT=C:\Users\larry\.hermes\hermes-agent`
+   - `HERMES_DESKTOP_HERMES_ROOT=`$USER_HOME\.hermes\hermes-agent`
 4. Require the primary Hermes desktop to be fully closed before NightSchool launch.
-5. Do **not** let NightSchool perform a fresh first-launch bootstrap into `C:\Users\larry\.hermes-nightschool\` yet.
+5. Do **not** let NightSchool perform a fresh first-launch bootstrap into `$USER_HOME\.hermes-nightschool\` yet.
 
 This keeps the binary shared, keeps writable NightSchool state separate, and avoids the installer path that currently mutates user-scoped environment settings.
 
@@ -51,7 +51,7 @@ Relevant install behavior observed in `scripts/install.ps1`:
 - writes user `HERMES_HOME`
 - persists additional PATH/Git settings in earlier prereq stages
 
-**Architectural impact:** a clean bootstrap under `C:\Users\larry\.hermes-nightschool` would not remain Lane F-clean. It can rewrite Larry's user-level Hermes defaults.
+**Architectural impact:** a clean bootstrap under `$USER_HOME\.hermes-nightschool` would not remain Lane F-clean. It can rewrite operator's user-level Hermes defaults.
 
 **Phase 1 rule:** do not allow the NightSchool lane to trigger first-launch bootstrap until this installer path is deliberately neutralized or replaced.
 
@@ -91,10 +91,10 @@ NightSchool Phase 1 should now mean:
 
 | Variable | Approved NightSchool value | Notes |
 |---|---|---|
-| `HERMES_DESKTOP_USER_DATA_DIR` | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool` | Separate Electron state |
-| `HERMES_HOME` | `C:\Users\larry\.hermes-nightschool` | Separate NightSchool data/log/config root |
-| `HERMES_DESKTOP_HERMES_ROOT` | `C:\Users\larry\.hermes\hermes-agent` | Reuse existing agent code/venv, avoid bootstrap |
-| `Hermes.exe` | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary |
+| `HERMES_DESKTOP_USER_DATA_DIR` | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool` | Separate Electron state |
+| `HERMES_HOME` | `$USER_HOME\.hermes-nightschool` | Separate NightSchool data/log/config root |
+| `HERMES_DESKTOP_HERMES_ROOT` | `$USER_HOME\.hermes\hermes-agent` | Reuse existing agent code/venv, avoid bootstrap |
+| `Hermes.exe` | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary |
 
 ### Explicit non-goals for this phase
 
@@ -206,7 +206,7 @@ Why:
 
 Use the draft launcher at:
 
-[2026-06-21-launch-hermes-nightschool-safe-reuse.ps1](C:/Users/larry/Documents/Troubleshoot/handoff/2026-06-21-launch-hermes-nightschool-safe-reuse.ps1)
+[2026-06-21-launch-hermes-nightschool-safe-reuse.ps1](`$TROUBLESHOOT_ROOT/handoff/2026-06-21-launch-hermes-nightschool-safe-reuse.ps1)
 
 This draft:
 
@@ -231,7 +231,7 @@ This draft:
   - `HERMES_HOME`
   - `HERMES_DESKTOP_HERMES_ROOT`
 - The NightSchool desktop lane is sequential only. Primary Hermes must be closed before launch.
-- Fresh first-launch bootstrap under `C:\Users\larry\.hermes-nightschool\` is deferred because the current installer persists user-level environment changes and is not yet Lane F-clean.
+- Fresh first-launch bootstrap under `$USER_HOME\.hermes-nightschool\` is deferred because the current installer persists user-level environment changes and is not yet Lane F-clean.
 - Update/uninstall flows are forbidden while Phase 1A shares the primary agent code root.
 
 ### Replace the old fixed-port assumption with this
@@ -243,9 +243,9 @@ This draft:
 
 1. Validate NightSchool launcher blocks when primary Hermes is open.
 2. Launch NightSchool with isolated `userData` and isolated `HERMES_HOME` while reusing the shared agent code root.
-3. Confirm `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\connection.json` is created or updated without mutating primary Hermes `connection.json`.
+3. Confirm `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\connection.json` is created or updated without mutating primary Hermes `connection.json`.
 4. Confirm user PATH and user-scoped `HERMES_HOME` remain unchanged after launch.
-5. Confirm NightSchool log/config/session writes land under `C:\Users\larry\.hermes-nightschool\`.
+5. Confirm NightSchool log/config/session writes land under `$USER_HOME\.hermes-nightschool\`.
 6. Record a Lane F note that update/uninstall actions are forbidden in the shared-code Phase 1A lane.
 
 ---
@@ -266,4 +266,6 @@ This draft:
 - isolated `userData`
 - isolated `HERMES_HOME`
 - explicit Lane F guardrails
+
+
 

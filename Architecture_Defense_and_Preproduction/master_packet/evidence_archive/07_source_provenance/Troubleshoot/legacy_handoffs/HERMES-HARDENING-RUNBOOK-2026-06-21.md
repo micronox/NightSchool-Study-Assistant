@@ -6,9 +6,9 @@
 ## Current Safe State
 
 - Hermes backup created:
-  - `C:\Users\larry\hermes-backup-2026-06-21-010944.zip`
+  - `$USER_HOME\hermes-backup-2026-06-21-010944.zip`
 - Hermes status snapshot:
-  - Project: `C:\Users\larry\.hermes\hermes-agent`
+  - Project: `$USER_HOME\.hermes\hermes-agent`
   - Python: `3.11.15`
   - Model: `anthropic/claude-opus-4.6`
   - Provider: `OpenRouter`
@@ -19,17 +19,17 @@
 ## Paths To Protect
 
 - Hermes home:
-  - `C:\Users\larry\.hermes`
+  - `$USER_HOME\.hermes`
 - Hermes repo:
-  - `C:\Users\larry\.hermes\hermes-agent`
+  - `$USER_HOME\.hermes\hermes-agent`
 - Hermes Python:
-  - `C:\Users\larry\.hermes\hermes-agent\venv\Scripts\python.exe`
+  - `$USER_HOME\.hermes\hermes-agent\venv\Scripts\python.exe`
 - Hermes CLI:
-  - `C:\Users\larry\.hermes\hermes-agent\venv\Scripts\hermes.exe`
+  - `$USER_HOME\.hermes\hermes-agent\venv\Scripts\hermes.exe`
 - Hermes-managed uv:
-  - `C:\Users\larry\.hermes\bin\uv.exe`
+  - `$USER_HOME\.hermes\bin\uv.exe`
 - uv-managed base Python:
-  - `C:\Users\larry\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`
+  - `$APPDATA_ROAMING_ROOT\uv\python\cpython-3.11-windows-x86_64-none\python.exe`
 
 ## Working Rule
 
@@ -88,7 +88,7 @@ source .venv/bin/activate
 ## If Hermes Ever Needs Restore
 
 ```powershell
-hermes import C:\Users\larry\hermes-backup-2026-06-21-010944.zip
+hermes import `$USER_HOME\hermes-backup-2026-06-21-010944.zip
 ```
 
 ## Next Safety Rule
@@ -99,3 +99,5 @@ Before pasting install steps from a README:
 2. Check the required Python version.
 3. Create a repo-local `.venv`.
 4. Never run project install commands from inside the Hermes repo.
+
+

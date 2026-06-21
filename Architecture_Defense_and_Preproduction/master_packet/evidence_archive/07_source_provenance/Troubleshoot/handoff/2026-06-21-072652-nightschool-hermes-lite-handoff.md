@@ -56,7 +56,7 @@
 - Headroom:
   - native Windows blocked
   - WSL path conditionally viable
-  - vetting doc exists under `L:\WSL_Projects_Folder\Architecture_Defense\headroom_install_vetting.md`
+  - vetting doc exists under `$PROJECTS_ROOT\Architecture_Defense\headroom_install_vetting.md`
 
 - Ponytail:
   - Claude Code: verified active
@@ -90,5 +90,7 @@ Resume with:
 ## Detailed log
 
 For full continuity, see:
-- [2026-06-21-072652-nightschool-hermes-tooling-full-context.md](C:/Users/larry/Documents/Troubleshoot/full_context/2026-06-21-072652-nightschool-hermes-tooling-full-context.md)
+- [2026-06-21-072652-nightschool-hermes-tooling-full-context.md](`$TROUBLESHOOT_ROOT/full_context/2026-06-21-072652-nightschool-hermes-tooling-full-context.md)
+
+
 

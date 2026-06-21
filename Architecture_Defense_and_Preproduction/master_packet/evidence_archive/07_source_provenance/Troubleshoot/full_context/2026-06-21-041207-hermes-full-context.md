@@ -52,13 +52,13 @@ This preserves local Ollama as the primary lane while giving Hermes a cloud back
 - Portal auth: active
 - Fallback chain: one Nous entry
 - Packaged Hermes desktop app: launchable from
-  - `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
+  - `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
 
 ## Proposal / Architect State
 
 We also reconciled the June 19 infrastructure proposal against the live system and saved:
 
-- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
+- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
 
 The important conclusion is:
 
@@ -70,7 +70,7 @@ The important conclusion is:
 
 Added durable rule file:
 
-- [TROUBLESHOOT-OPERATING-RULES.md](C:/Users/larry/Documents/Troubleshoot/TROUBLESHOOT-OPERATING-RULES.md)
+- [TROUBLESHOOT-OPERATING-RULES.md](`$TROUBLESHOOT_ROOT/TROUBLESHOOT-OPERATING-RULES.md)
 
 New rules established:
 
@@ -81,11 +81,11 @@ New rules established:
 ## Preserved Recovery Artifacts
 
 - Local storage backup:
-  - `C:\Users\larry\Documents\Troubleshoot\backups\hermes-localstorage-20260621-032620`
+  - `$TROUBLESHOOT_ROOT\backups\hermes-localstorage-20260621-032620`
 - Config backup:
-  - `C:\Users\larry\Documents\Troubleshoot\backups\hermes-config-fallback-20260621-portal.yaml`
+  - `$TROUBLESHOOT_ROOT\backups\hermes-config-fallback-20260621-portal.yaml`
 - Rotated stale desktop store:
-  - `C:\Users\larry\AppData\Roaming\Hermes\Local Storage.preclean-20260621-035340`
+  - `$APPDATA_ROAMING_ROOT\Hermes\Local Storage.preclean-20260621-035340`
 
 ## Suggested Next Work Package
 
@@ -108,7 +108,9 @@ Then decide:
 
 ## Reference Set
 
-- [2026-06-21-041207-hermes-current-handoff.md](C:/Users/larry/Documents/Troubleshoot/handoff/2026-06-21-041207-hermes-current-handoff.md)
-- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
-- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
-- [CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md](C:/Users/larry/Documents/Troubleshoot/CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md)
+- [2026-06-21-041207-hermes-current-handoff.md](`$TROUBLESHOOT_ROOT/handoff/2026-06-21-041207-hermes-current-handoff.md)
+- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
+- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
+- [CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md](`$TROUBLESHOOT_ROOT/CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md)
+
+

@@ -7,10 +7,10 @@
 ## Current stable facts
 
 - Active project home is now:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles`
 - Architecture-defense logging should now live under:
-  - `L:\WSL_Projects_Folder\Architecture_Defense`
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs`
+  - `$PROJECTS_ROOT\Architecture_Defense`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs`
 - Timestamped filenames are now standard:
   - `YYYY-MM-DD-HHMMSS_<slug>`
 
@@ -34,26 +34,26 @@
 ## Kopia / Lane F state
 
 - Repository is confirmed live at:
-  - `E:\KopiaRepo`
+  - `$KOPIA_REPO`
 - Kopia CLI path:
-  - `C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe`
+  - `$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe`
 - `kopia` has been added to user PATH and verified.
 - Claude’s Kopia spec has Codex answers for CK-Q1, CK-Q2, and CK-Q5.
 
 ## Most important files
 
 - Phase 1A architecture review:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
 - Safe launcher draft:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
 - Claude Kopia spec:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_kopia_lane_f_spec.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_kopia_lane_f_spec.md`
 - Codex Kopia answers:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-081000-kopia-lane-f-codex-answers.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-081000-kopia-lane-f-codex-answers.md`
 
 ## Recommended next action
 
-- Start the new chat from `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles`
+- Start the new chat from `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles`
 - Use Hermes with Nemotron Super to peer-review:
   - Claude’s Kopia spec
   - Codex’s Kopia answers
@@ -67,4 +67,6 @@
 
 - See full context:
   - `2026-06-21-085434-architecture-defense-full-context.md`
+
+
 

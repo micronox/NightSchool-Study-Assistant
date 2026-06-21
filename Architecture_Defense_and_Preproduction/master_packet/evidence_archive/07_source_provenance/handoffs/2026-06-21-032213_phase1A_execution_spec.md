@@ -4,7 +4,7 @@
 **Status:** APPROVED FOR EXECUTION — Codex review complete
 **Codex review:** `handoffs/2026-06-21_phase1A_codex_review_response.md`
 **ADR:** `handoffs/2026-06-21_ADR-001_hermes_dual_instance_isolation.md`
-**Larry's instructions:** `handoffs/2026-06-21_phase1A_larry_instructions.md`
+**operator's instructions:** `handoffs/2026-06-21_phase1A_larry_instructions.md`
 
 ---
 
@@ -13,7 +13,7 @@
 The original Phase 1 plan had three errors Codex caught:
 
 1. **Concurrent operation assumed** — Hermes uses `app.requestSingleInstanceLock()`. Two desktops cannot run at once. NightSchool is a *sequential* alternate lane, not a parallel one.
-2. **Bootstrap not Lane F-clean** — `install.ps1` writes to user PATH and user-scoped `HERMES_HOME`. A first-launch bootstrap from NightSchool would mutate Larry's primary environment. Deferred.
+2. **Bootstrap not Lane F-clean** — `install.ps1` writes to user PATH and user-scoped `HERMES_HOME`. A first-launch bootstrap from NightSchool would mutate operator's primary environment. Deferred.
 3. **Port 9119 assumption wrong** — current desktop uses ephemeral port (`--port 0`), not a fixed 9119 bind. Port config via `connection.json` is not the isolation mechanism.
 
 **Phase 1 is now renamed Phase 1A.** "Phase 1B" will cover the controlled bootstrap path once the installer mutation issue is understood and neutralized.
@@ -33,13 +33,13 @@ A sequential NightSchool Hermes lane using:
 
 ## Cards
 
-### Card 1A-0: Pre-launch Lane F drift check (Larry — before anything else)
+### Card 1A-0: Pre-launch Lane F drift check (operator — before anything else)
 
 **Context:** reads `isolation_manifest.md` only.
-**Owner:** Larry (human-executable check)
+**Owner:** operator (human-executable check)
 **Acceptance criteria:**
 - [ ] Open a new PowerShell window (not from within any Hermes session)
-- [ ] Run: `echo $env:HERMES_HOME` — must be empty or `C:\Users\larry\.hermes` (the primary default). Must NOT be `C:\Users\larry\.hermes-nightschool`.
+- [ ] Run: `echo $env:HERMES_HOME` — must be empty or `$USER_HOME\.hermes` (the primary default). Must NOT be `$USER_HOME\.hermes-nightschool`.
 - [ ] Run: `echo $env:HERMES_DESKTOP_USER_DATA_DIR` — must be empty. If it has a value, that means a prior session leaked it user-wide — stop and tell Claude.
 - [ ] Confirm primary Hermes is either running normally (you'll close it in Card 1A-1) or not running.
 
@@ -48,10 +48,10 @@ A sequential NightSchool Hermes lane using:
 
 ---
 
-### Card 1A-1: Close primary Hermes (Larry — human action)
+### Card 1A-1: Close primary Hermes (operator — human action)
 
 **Context:** none needed.
-**Owner:** Larry
+**Owner:** operator
 **Acceptance criteria:**
 - [ ] Close the primary Hermes desktop window completely (not just minimize).
 - [ ] Open Task Manager → confirm no `Hermes.exe` process is running.
@@ -64,7 +64,7 @@ A sequential NightSchool Hermes lane using:
 ### Card 1A-2: Run the approved launch script
 
 **Context:** `scripts/launch_hermes_nightschool_safe_reuse.ps1`
-**Owner:** Larry (run) + Claude (verify output)
+**Owner:** operator (run) + Claude (verify output)
 **Script:** `Prototype_workingFiles\scripts\launch_hermes_nightschool_safe_reuse.ps1`
 
 **Pre-conditions:**
@@ -73,16 +73,16 @@ A sequential NightSchool Hermes lane using:
 
 **Steps:**
 1. Open PowerShell as normal user (not Administrator)
-2. `cd L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\scripts`
+2. `cd `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\scripts`
 3. `.\launch_hermes_nightschool_safe_reuse.ps1`
 
 **Expected output:**
 ```
 [NightSchool] Preparing sequential Hermes launch (Phase 1A)...
-  userData:   C:\Users\larry\AppData\Roaming\Hermes-NightSchool
-  home:       C:\Users\larry\.hermes-nightschool
-  sharedRoot: C:\Users\larry\.hermes\hermes-agent
-  exe:        C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe
+  userData:   `$APPDATA_ROAMING_ROOT\Hermes-NightSchool
+  home:       `$USER_HOME\.hermes-nightschool
+  sharedRoot: `$USER_HOME\.hermes\hermes-agent
+  exe:        `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe
 
 [NightSchool] Launching Hermes with isolated state and shared code root...
 [NightSchool] IMPORTANT: do not use update/uninstall flows in this lane (Lane F T4).
@@ -107,9 +107,9 @@ Post-launch verification checklist...
 **Owner:** Claude (Desktop Commander reads)
 
 **Checks:**
-- [ ] `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\connection.json` exists
-- [ ] `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\connection.json` is NightSchool-scoped and primary `Hermes\connection.json` remains the only known baseline file pinned to `localhost:9119`
-- [ ] `C:\Users\larry\AppData\Roaming\Hermes\connection.json` is UNCHANGED (diff against Phase 0 baseline: `mode=local, endpoint=http://localhost:9119, authMode=oauth`)
+- [ ] `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\connection.json` exists
+- [ ] `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\connection.json` is NightSchool-scoped and primary `Hermes\connection.json` remains the only known baseline file pinned to `localhost:9119`
+- [ ] `$APPDATA_ROAMING_ROOT\Hermes\connection.json` is UNCHANGED (diff against Phase 0 baseline: `mode=local, endpoint=http://localhost:9119, authMode=oauth`)
 
 **Evidence field:** content of both `connection.json` files.
 **Rollback if primary connection.json changed:** immediate Lane F flag — stop, document, do not proceed.
@@ -119,7 +119,7 @@ Post-launch verification checklist...
 ### Card 1A-4: Verify user PATH and HERMES_HOME unchanged (Lane F T5)
 
 **Context:** none.
-**Owner:** Larry (human check in new shell)
+**Owner:** operator (human check in new shell)
 
 **Steps:**
 1. Open a **new** PowerShell window (separate from the one that ran the launch script — env must not be inherited)
@@ -127,7 +127,7 @@ Post-launch verification checklist...
 3. Run: `[System.Environment]::GetEnvironmentVariable("HERMES_HOME", "User")`
 
 **Acceptance criteria:**
-- [ ] Process-level `$env:HERMES_HOME` in the new shell is empty or `C:\Users\larry\.hermes` (never `.hermes-nightschool`)
+- [ ] Process-level `$env:HERMES_HOME` in the new shell is empty or `$USER_HOME\.hermes` (never `.hermes-nightschool`)
 - [ ] User-scoped `HERMES_HOME` is empty or unchanged from before Phase 1A
 - [ ] `$env:PATH` does not contain any new NightSchool entries (spot-check for `nightschool` or `.hermes-nightschool` in PATH)
 
@@ -142,11 +142,11 @@ Post-launch verification checklist...
 **Owner:** Claude (Desktop Commander reads)
 
 **Checks:**
-- [ ] `C:\Users\larry\.hermes-nightschool\` exists
-- [ ] `C:\Users\larry\.hermes-nightschool\logs\` exists
-- [ ] `C:\Users\larry\.hermes-nightschool\sessions\` exists
-- [ ] `C:\Users\larry\.hermes-nightschool\memories\` exists
-- [ ] `C:\Users\larry\.hermes\` directory: no new files written (mtime check on key dirs)
+- [ ] `$USER_HOME\.hermes-nightschool\` exists
+- [ ] `$USER_HOME\.hermes-nightschool\logs\` exists
+- [ ] `$USER_HOME\.hermes-nightschool\sessions\` exists
+- [ ] `$USER_HOME\.hermes-nightschool\memories\` exists
+- [ ] `$USER_HOME\.hermes\` directory: no new files written (mtime check on key dirs)
 
 **Evidence field:** directory listing of `.hermes-nightschool\`.
 **Rollback if .hermes\ was written to:** Lane F flag — investigate before Phase 1B.
@@ -225,3 +225,5 @@ This spec is self-contained. Cards 1A-0 through 1A-7 require only:
 - Phase 0 verification note (for connection.json baseline comparison)
 
 No prior session history needed.
+
+

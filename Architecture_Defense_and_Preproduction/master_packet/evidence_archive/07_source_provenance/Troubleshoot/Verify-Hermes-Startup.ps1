@@ -66,7 +66,7 @@ if (-not $wslDash.Found) {
     Write-Status "WSLDashboard Task" $wslDash.State.ToUpper() $wslDash.Detail
 }
 
-$connectionPath = "C:\Users\larry\AppData\Roaming\Hermes\connection.json"
+$connectionPath = "`$APPDATA_ROAMING_ROOT\Hermes\connection.json"
 if (Test-Path -LiteralPath $connectionPath) {
     try {
         $connection = Get-Content -LiteralPath $connectionPath -Raw | ConvertFrom-Json
@@ -78,7 +78,7 @@ if (Test-Path -LiteralPath $connectionPath) {
     Write-Status "Desktop Mode" "MISSING" $connectionPath
 }
 
-$gatewayStatePath = "C:\Users\larry\.hermes\gateway_state.json"
+$gatewayStatePath = "`$USER_HOME\.hermes\gateway_state.json"
 if (Test-Path -LiteralPath $gatewayStatePath) {
     try {
         $gatewayState = Get-Content -LiteralPath $gatewayStatePath -Raw | ConvertFrom-Json
@@ -117,3 +117,4 @@ if ($Repair) {
 } else {
     Write-Output "Tip: run with -Repair to start Hermes/WSLDashboard tasks if they are not running."
 }
+

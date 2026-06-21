@@ -1,4 +1,4 @@
-# Phase 1A — What Larry Does Next
+# Phase 1A — What operator Does Next
 **Date:** 2026-06-21
 **Written by:** Claude, based on Codex Phase 1 review
 
@@ -50,7 +50,7 @@ Get-Process -Name "Hermes" -ErrorAction SilentlyContinue
 In the same PowerShell window, run:
 
 ```powershell
-cd L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\scripts
+cd `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\scripts
 .\launch_hermes_nightschool_safe_reuse.ps1
 ```
 
@@ -85,7 +85,7 @@ echo $env:HERMES_HOME
 [System.Environment]::GetEnvironmentVariable("HERMES_HOME", "User")
 ```
 
-**Expected:** both should be empty or your original primary value (`C:\Users\larry\.hermes`). If either shows `.hermes-nightschool`, that's a Lane F flag — tell Claude immediately.
+**Expected:** both should be empty or your original primary value (`$USER_HOME\.hermes`). If either shows `.hermes-nightschool`, that's a Lane F flag — tell Claude immediately.
 
 ---
 
@@ -106,7 +106,9 @@ Once the post-launch checks pass, Claude will:
 **If Hermes opens but behaves strangely:** close it, paste any error messages to Claude, and don't do anything else in the window.
 
 **Rollback is simple:** if anything looks wrong, just close the NightSchool Hermes window. You can then delete two folders to get back to a clean state:
-- `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\`
-- `C:\Users\larry\.hermes-nightschool\`
+- `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\`
+- `$USER_HOME\.hermes-nightschool\`
 
 Your primary Hermes is completely untouched either way.
+
+

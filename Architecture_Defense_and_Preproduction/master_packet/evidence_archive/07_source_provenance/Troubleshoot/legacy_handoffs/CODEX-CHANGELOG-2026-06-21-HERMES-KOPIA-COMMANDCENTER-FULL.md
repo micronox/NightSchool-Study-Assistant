@@ -7,7 +7,7 @@
 
 Three major tracks were handled:
 
-1. A local Kopia repository was created on `E:\KopiaRepo`
+1. A local Kopia repository was created on `$KOPIA_REPO`
 2. Hermes was hardened without disturbing the working install
 3. A lightweight startup verification/recovery flow was created and wired into Windows login plus a desktop command-center folder
 
@@ -21,12 +21,12 @@ The next likely task is:
 
 - Chose local repository first, not cloud
 - Selected:
-  - `E:\KopiaRepo`
+  - `$KOPIA_REPO`
 
 ### Snapshot roots created
 
 - `L:\`
-- `C:\Users\larry`
+- `$USER_HOME`
 
 ### `L:\` excludes established
 
@@ -34,7 +34,7 @@ The next likely task is:
 - `$RECYCLE.BIN/`
 - `AI_vault/HuggingFace_Hub/`
 
-### `C:\Users\larry` backup strategy
+### `$USER_HOME` backup strategy
 
 Goal was not a normal personal-files backup. Goal was:
 
@@ -42,7 +42,7 @@ Goal was not a normal personal-files backup. Goal was:
 - avoid ordinary Windows user content
 - avoid giant caches/models/device mirrors/reinstallable program payloads
 
-### `C:\Users\larry` exclude list evolved to include
+### `$USER_HOME` exclude list evolved to include
 
 - `Desktop/`
 - `Documents/`
@@ -124,7 +124,7 @@ Conclusion:
 ### Current Kopia status
 
 - `L:\` snapshot was healthy around `31.6 GB`
-- `C:\Users\larry` was reduced from chaotic `80 GB+` partial/canceled runs to about `46 GB`
+- `$USER_HOME` was reduced from chaotic `80 GB+` partial/canceled runs to about `46 GB`
 - some remaining errors were normal locked-file issues such as:
   - `.codex\tmp\...lock`
   - `AppData\Local\Comms\UnistoreDB\...`
@@ -168,8 +168,8 @@ Live verified state during this chat:
 
 Created timestamped backups of:
 
-- `C:\Users\larry\.hermes\config.yaml`
-- `C:\Users\larry\.hermes\.env`
+- `$USER_HOME\.hermes\config.yaml`
+- `$USER_HOME\.hermes\.env`
 
 Timestamp used:
 
@@ -251,7 +251,7 @@ Inspection showed real profiles now are only:
 
 Stale launcher `.bat` files were found in:
 
-- `C:\Users\larry\.local\bin`
+- `$USER_HOME\.local\bin`
 
 Removed:
 
@@ -296,8 +296,8 @@ Conclusion:
 
 Created:
 
-- [Verify-Hermes-Startup.ps1](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.ps1)
-- [Verify-Hermes-Startup.cmd](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.cmd)
+- [Verify-Hermes-Startup.ps1](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.ps1)
+- [Verify-Hermes-Startup.cmd](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.cmd)
 
 Behavior:
 
@@ -324,24 +324,24 @@ Observed:
 
 Created Startup shortcut:
 
-- `C:\Users\larry\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Hermes Startup Verify.lnk`
+- `$APPDATA_ROAMING_ROOT\Microsoft\Windows\Start Menu\Programs\Startup\Hermes Startup Verify.lnk`
 
 It runs:
 
 - PowerShell hidden
-- [Verify-Hermes-Startup.ps1](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.ps1)
+- [Verify-Hermes-Startup.ps1](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.ps1)
 - with `-Repair`
 
 ### Command center folder
 
 User created:
 
-- `C:\Users\larry\Desktop\WorldFoundryInk_CommandCenter`
+- `$DESKTOP_ROOT\WorldFoundryInk_CommandCenter`
 
 Created shortcuts there:
 
-- [Hermes Startup Check.lnk](C:/Users/larry/Desktop/WorldFoundryInk_CommandCenter/Hermes%20Startup%20Check.lnk)
-- [Hermes Startup Repair.lnk](C:/Users/larry/Desktop/WorldFoundryInk_CommandCenter/Hermes%20Startup%20Repair.lnk)
+- [Hermes Startup Check.lnk](`$DESKTOP_ROOT/WorldFoundryInk_CommandCenter/Hermes%20Startup%20Check.lnk)
+- [Hermes Startup Repair.lnk](`$DESKTOP_ROOT/WorldFoundryInk_CommandCenter/Hermes%20Startup%20Repair.lnk)
 
 Intent:
 
@@ -351,15 +351,15 @@ Intent:
 
 ## Known Files Produced In This Chat
 
-- [CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md](C:/Users/larry/Documents/Troubleshoot/CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md)
-- [Verify-Hermes-Startup.ps1](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.ps1)
-- [Verify-Hermes-Startup.cmd](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.cmd)
+- [CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md](`$TROUBLESHOOT_ROOT/CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md)
+- [Verify-Hermes-Startup.ps1](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.ps1)
+- [Verify-Hermes-Startup.cmd](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.cmd)
 
 Also created shortcuts:
 
-- `C:\Users\larry\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Hermes Startup Verify.lnk`
-- `C:\Users\larry\Desktop\WorldFoundryInk_CommandCenter\Hermes Startup Check.lnk`
-- `C:\Users\larry\Desktop\WorldFoundryInk_CommandCenter\Hermes Startup Repair.lnk`
+- `$APPDATA_ROAMING_ROOT\Microsoft\Windows\Start Menu\Programs\Startup\Hermes Startup Verify.lnk`
+- `$DESKTOP_ROOT\WorldFoundryInk_CommandCenter\Hermes Startup Check.lnk`
+- `$DESKTOP_ROOT\WorldFoundryInk_CommandCenter\Hermes Startup Repair.lnk`
 
 ## Best Next Step
 
@@ -395,8 +395,10 @@ Do:
 
 - assume Hermes is basically working
 - preserve:
-  - `C:\Users\larry\.hermes`
-  - `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
+  - `$USER_HOME\.hermes`
+  - `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
   - current Scheduled Tasks
 - use unsandboxed checks for Hermes commands if sandbox still throws `uv trampoline` permission errors
 - focus the next session specifically on restoring/validating local-model Hermes behavior
+
+

@@ -13,7 +13,7 @@
 Save this debrief inside the Prototype working directory, in a new `handoffs/` subfolder — **not** loose in the project root, and never in `App_Final_Deliverable`:
 
 ```
-L:\WSL_Projects_Folder\Nightschool_Study\
+`$PROJECTS_ROOT\Nightschool_Study\
 └── Prototype_workingFiles\
     └── handoffs\
         ├── 2026-06-21_cowork_kickoff_debrief.md   ← this file
@@ -25,7 +25,7 @@ L:\WSL_Projects_Folder\Nightschool_Study\
 Also save the current PRD itself into the project, if it isn't already there:
 
 ```
-L:\WSL_Projects_Folder\Nightschool_Study\
+`$PROJECTS_ROOT\Nightschool_Study\
 └── Prototype_workingFiles\
     └── PRD\
         └── NightSchool_PRD_and_Execution_System_v2.md
@@ -47,8 +47,8 @@ session that does not have filesystem access — you do, and that's why
 you're being looped in now.
 
 Read these two files first, in this order:
-1. L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\PRD\NightSchool_PRD_and_Execution_System_v2.md
-2. L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_cowork_kickoff_debrief.md
+1. `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\PRD\NightSchool_PRD_and_Execution_System_v2.md
+2. `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_cowork_kickoff_debrief.md
 
 Your job right now is Phase 0 only, exactly as scoped in the PRD's
 §9 Phase 0 section. Do not proceed past Phase 0 without producing
@@ -57,7 +57,7 @@ file paths confirmed to exist) — no claims of "done" without proof,
 per the PRD's Verification Standard (§10).
 
 Specifically for this session:
-1. Confirm the WSL mount path for L:\WSL_Projects_Folder\Nightschool_Study\
+1. Confirm the WSL mount path for `$PROJECTS_ROOT\Nightschool_Study\
    — run the actual command, paste the actual output, don't assume /mnt/l/.
 2. Locate and document my primary/worker Hermes install's exact root path,
    config location, and venv/node scope — this is the baseline Lane F will
@@ -171,3 +171,4 @@ Bring the resulting Phase 0 verification note back into this chat (paste it, or 
 - Help you write the next Cowork kickoff message for Phase 1, now informed by what Phase 0 actually found (e.g., the real WSL path, the real port range) instead of the placeholders in the current PRD draft.
 
 This is the audit role you asked for: Cowork executes with real disk access, I review the evidence it produces against the spec before the next phase is greenlit. Neither of us is trusting the other's "done" claim blind.
+

@@ -8,13 +8,13 @@
 
 $ErrorActionPreference = "Stop"
 
-$NightSchoolUserData = "C:\Users\larry\AppData\Roaming\Hermes-NightSchool"
-$NightSchoolHome     = "C:\Users\larry\.hermes-nightschool"
-$SharedHermesRoot    = "C:\Users\larry\.hermes\hermes-agent"
+$NightSchoolUserData = "`$APPDATA_ROAMING_ROOT\Hermes-NightSchool"
+$NightSchoolHome     = "`$USER_HOME\.hermes-nightschool"
+$SharedHermesRoot    = "`$USER_HOME\.hermes\hermes-agent"
 $HermesExe           = Join-Path $SharedHermesRoot "apps\desktop\release\win-unpacked\Hermes.exe"
 
-$PrimaryUserData = "C:\Users\larry\AppData\Roaming\Hermes"
-$PrimaryHome     = "C:\Users\larry\.hermes"
+$PrimaryUserData = "`$APPDATA_ROAMING_ROOT\Hermes"
+$PrimaryHome     = "`$USER_HOME\.hermes"
 
 Write-Host "[NightSchool] Preparing sequential Hermes launch..."
 Write-Host "  userData:   $NightSchoolUserData"
@@ -74,3 +74,4 @@ Write-Host "  1. Verify $NightSchoolUserData\\connection.json is NightSchool-sco
 Write-Host "  2. Verify $PrimaryUserData\\connection.json is unchanged."
 Write-Host "  3. Verify new logs/config land under $NightSchoolHome."
 Write-Host "  4. Do not run updater/uninstall actions from this lane."
+

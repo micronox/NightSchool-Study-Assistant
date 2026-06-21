@@ -21,12 +21,12 @@
 - Fresh desktop local storage was rebuilt by the packaged Hermes desktop app
 - The stale `qwen3.6:35b-a3b` sticky desktop model state is gone
 - Preserved stale desktop store:
-  - `C:\Users\larry\AppData\Roaming\Hermes\Local Storage.preclean-20260621-035340`
+  - `$APPDATA_ROAMING_ROOT\Hermes\Local Storage.preclean-20260621-035340`
 
 ## Proposal State
 
 - Refined proposal saved:
-  - [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
+  - [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
 - Current interpretation:
   - Track A is functionally achieved in practice
   - performance tuning is still unmeasured
@@ -37,8 +37,8 @@
 - New logging rule:
   - exported notes and handoffs should include both date and timecode in filenames
 - New folder structure:
-  - `C:\Users\larry\Documents\Troubleshoot\handoff`
-  - `C:\Users\larry\Documents\Troubleshoot\full_context`
+  - `$TROUBLESHOOT_ROOT\handoff`
+  - `$TROUBLESHOOT_ROOT\full_context`
 
 ## Recommended Next Step
 
@@ -51,7 +51,9 @@ Run the benchmark-and-routing baseline described in the refined proposal:
 
 ## Key References
 
-- [TROUBLESHOOT-OPERATING-RULES.md](C:/Users/larry/Documents/Troubleshoot/TROUBLESHOOT-OPERATING-RULES.md)
-- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
-- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
-- [CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md](C:/Users/larry/Documents/Troubleshoot/CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md)
+- [TROUBLESHOOT-OPERATING-RULES.md](`$TROUBLESHOOT_ROOT/TROUBLESHOOT-OPERATING-RULES.md)
+- [HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-MODEL-INFRA-UPGRADE-REFINED-2026-06-21.md)
+- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
+- [CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md](`$TROUBLESHOOT_ROOT/CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md)
+
+

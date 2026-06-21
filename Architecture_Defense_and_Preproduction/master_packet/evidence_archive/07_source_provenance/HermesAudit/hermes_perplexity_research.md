@@ -117,14 +117,14 @@ Important separation rule:
 
 ## Canonical install target
 
-- Hermes runtime/code: `/home/larry/.hermes/hermes-agent`
-- Hermes state root: `/home/larry/.hermes`
+- Hermes runtime/code: `$WSL_USER_HOME/.hermes/hermes-agent`
+- Hermes state root: `$WSL_USER_HOME/.hermes`
 
 Expected state subpaths:
 
-- `/home/larry/.hermes/.env`
-- `/home/larry/.hermes/skills`
-- `/home/larry/.hermes/memory`
+- `$WSL_USER_HOME/.hermes/.env`
+- `$WSL_USER_HOME/.hermes/skills`
+- `$WSL_USER_HOME/.hermes/memory`
 
 ## Backend authority rules
 
@@ -139,7 +139,7 @@ Locked architecture decisions:
 
 Segment B was previously completed and verified:
 
-- Hermes is installed under `/home/larry/.hermes/hermes-agent`
+- Hermes is installed under `$WSL_USER_HOME/.hermes/hermes-agent`
 - `hermes` is on `PATH` inside WSL
 - `hermes --version` works
 - `hermes doctor` runs successfully with warnings only
@@ -201,7 +201,7 @@ Reason:
 
 Segment D was previously completed and verified:
 
-- `OPENROUTER_API_KEY` stored in `/home/larry/.hermes/.env`
+- `OPENROUTER_API_KEY` stored in `$WSL_USER_HOME/.hermes/.env`
 - `hermes config show` recognized OpenRouter key presence
 - OpenRouter validation returned `ok`
 - auxiliary one-shot inference succeeded
@@ -277,7 +277,7 @@ Large artifacts should remain on host-backed vault storage and not silently accu
 
 Authoritative Hermes backend state lives in:
 
-- `/home/larry/.hermes`
+- `$WSL_USER_HOME/.hermes`
 
 ### Windows Desktop state
 
@@ -311,7 +311,7 @@ Because WSL is authoritative, the important tool semantics are:
 
 Validated evidence from Segment F already showed tool output referencing WSL paths such as:
 
-- `/home/larry/.hermes/config.yaml`
+- `$WSL_USER_HOME/.hermes/config.yaml`
 
 That is strong evidence the active tool lane was genuinely hitting WSL-side state.
 
@@ -611,3 +611,5 @@ You can paste these directly after the spec if you want Perplexity to target the
    5) If I were to start doing side work on upWork and committing work to other peoples Githubs, how does that work.
    6) What steps are there to build an agentic OS ontop of Hermes
    7) What are the top github / youtube customization routes for the tech stack we have
+
+

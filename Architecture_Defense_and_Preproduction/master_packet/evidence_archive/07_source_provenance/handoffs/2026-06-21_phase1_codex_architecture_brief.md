@@ -8,7 +8,7 @@
 
 ## Context
 
-NightSchool requires an isolated Hermes desktop instance separate from Larry's primary Hermes install. The Phase 1 decision (confirmed by Larry) is Option A: Electron-style profile separation using the same binary with isolated state directories — not a second pip/npm/venv install.
+NightSchool requires an isolated Hermes desktop instance separate from operator's primary Hermes install. The Phase 1 decision (confirmed by operator) is Option A: Electron-style profile separation using the same binary with isolated state directories — not a second pip/npm/venv install.
 
 This brief summarizes the discovery findings and asks Codex to:
 1. Review and approve (or flag) the isolation architecture
@@ -23,7 +23,7 @@ This brief summarizes the discovery findings and asks Codex to:
 
 | Item | Value |
 |---|---|
-| Exe path | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` |
+| Exe path | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` |
 | Internal version | `0.15.1` (package.json inside app.asar); installer label: `0.5.6` |
 | App framework | Electron + Chromium (confirmed: `LICENSE.electron.txt`, Chromium HTML, standard Electron binary layout) |
 | App entry point | `electron/main.cjs` (inside `resources/app.asar`) |
@@ -54,8 +54,8 @@ if (USER_DATA_OVERRIDE) {
 - `translucency.json`
 - Chromium session, cookies, cache, Local Storage
 
-**Without this var:** writes to `C:\Users\larry\AppData\Roaming\Hermes\` (primary — must not be touched)
-**With this var:** writes to `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\` (NightSchool-only)
+**Without this var:** writes to `$APPDATA_ROAMING_ROOT\Hermes\` (primary — must not be touched)
+**With this var:** writes to `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\` (NightSchool-only)
 
 ---
 
@@ -68,8 +68,8 @@ HERMES_HOME: hermesHome || process.env.HERMES_HOME || ''
 
 **Effect:** Passed to all bootstrap/install stages (PowerShell and bash). Controls where the Hermes Python agent backend, its venv, profiles directory, logs, and bootstrap cache are rooted.
 
-**Without this var:** defaults to `C:\Users\larry\.hermes\` (shared primary backend — must not be touched)
-**With this var:** roots at `C:\Users\larry\.hermes-nightschool\`
+**Without this var:** defaults to `$USER_HOME\.hermes\` (shared primary backend — must not be touched)
+**With this var:** roots at `$USER_HOME\.hermes-nightschool\`
 
 ---
 
@@ -77,9 +77,9 @@ HERMES_HOME: hermesHome || process.env.HERMES_HOME || ''
 
 | Variable | NightSchool value | Primary value (must not match) |
 |---|---|---|
-| `HERMES_DESKTOP_USER_DATA_DIR` | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool` | `C:\Users\larry\AppData\Roaming\Hermes` |
-| `HERMES_HOME` | `C:\Users\larry\.hermes-nightschool` | `C:\Users\larry\.hermes` |
-| Exe | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | same binary — shared read-only |
+| `HERMES_DESKTOP_USER_DATA_DIR` | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool` | `$APPDATA_ROAMING_ROOT\Hermes` |
+| `HERMES_HOME` | `$USER_HOME\.hermes-nightschool` | `$USER_HOME\.hermes` |
+| Exe | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | same binary — shared read-only |
 
 ---
 
@@ -88,14 +88,14 @@ HERMES_HOME: hermesHome || process.env.HERMES_HOME || ''
 **Path:** `Prototype_workingFiles\scripts\launch_hermes_nightschool.ps1`
 
 ```powershell
-$env:HERMES_DESKTOP_USER_DATA_DIR = "C:\Users\larry\AppData\Roaming\Hermes-NightSchool"
-$env:HERMES_HOME                   = "C:\Users\larry\.hermes-nightschool"
+$env:HERMES_DESKTOP_USER_DATA_DIR = "`$APPDATA_ROAMING_ROOT\Hermes-NightSchool"
+$env:HERMES_HOME                   = "`$USER_HOME\.hermes-nightschool"
 
-$HERMES_EXE = "C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe"
+$HERMES_EXE = "`$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe"
 
 # Lane F pre-launch guard
-$PRIMARY_USERDATA = "C:\Users\larry\AppData\Roaming\Hermes"
-$PRIMARY_HOME     = "C:\Users\larry\.hermes"
+$PRIMARY_USERDATA = "`$APPDATA_ROAMING_ROOT\Hermes"
+$PRIMARY_HOME     = "`$USER_HOME\.hermes"
 
 if ($env:HERMES_DESKTOP_USER_DATA_DIR -eq $PRIMARY_USERDATA) {
     Write-Error "[LANE F] BLOCKED: userData points to primary Hermes!"
@@ -144,9 +144,9 @@ On first NightSchool launch, the app will run its bootstrap sequence (Phase 1D i
 
 ### Q3 — `HERMES_HOME` path reuse: can NightSchool point to the existing agent install?
 
-The existing agent code is already at `C:\Users\larry\.hermes\hermes-agent\`. The isolation we need is for *config and profiles*, not necessarily for the agent *code*.
+The existing agent code is already at `$USER_HOME\.hermes\hermes-agent\`. The isolation we need is for *config and profiles*, not necessarily for the agent *code*.
 
-**Alternative design:** Set `HERMES_HOME=C:\Users\larry\.hermes-nightschool` for profile/config isolation, but find a way to tell the bootstrap to reuse the existing agent binary at `~/.hermes/hermes-agent/` rather than re-cloning. This would make the first NightSchool launch much faster and avoid unnecessary network activity.
+**Alternative design:** Set `HERMES_HOME=`$USER_HOME\.hermes-nightschool` for profile/config isolation, but find a way to tell the bootstrap to reuse the existing agent binary at `~/.hermes/hermes-agent/` rather than re-cloning. This would make the first NightSchool launch much faster and avoid unnecessary network activity.
 
 **Request:** Codex to assess whether this is possible and safe, or whether full `HERMES_HOME` isolation (including a second agent install) is the cleaner path.
 
@@ -167,8 +167,8 @@ The app checks `IS_WINDOWS`, has port binding, and uses `safeStorage` (Electron'
 ### Q5 — Lane F completeness: are these tripwires sufficient?
 
 Current Lane F tripwires in `isolation_manifest.md`:
-1. NightSchool `HERMES_DESKTOP_USER_DATA_DIR` ≠ `C:\Users\larry\AppData\Roaming\Hermes\`
-2. NightSchool `HERMES_HOME` ≠ `C:\Users\larry\.hermes\`
+1. NightSchool `HERMES_DESKTOP_USER_DATA_DIR` ≠ `$APPDATA_ROAMING_ROOT\Hermes\`
+2. NightSchool `HERMES_HOME` ≠ `$USER_HOME\.hermes\`
 3. NightSchool `connection.json` must not reference port 9119
 
 **Request:** Codex to assess whether these three tripwires are sufficient or whether additional checks are needed (e.g., checking that `safeStorage` is isolated, that no temp files cross-contaminate, that the startup script doesn't inherit any env vars from the primary Hermes session).
@@ -182,7 +182,7 @@ Current Lane F tripwires in `isolation_manifest.md`:
 3. **Redlines on the launch script** if anything needs to change before first execution
 4. **Approval to proceed** to first NightSchool Hermes launch, or a list of blockers that must be resolved first
 
-This is a pre-launch gate. Claude will not instruct Larry to run the launch script until Codex approves or provides alternative instructions.
+This is a pre-launch gate. Claude will not instruct operator to run the launch script until Codex approves or provides alternative instructions.
 
 ---
 
@@ -195,5 +195,7 @@ All in `Prototype_workingFiles\`:
 - `scripts\launch_hermes_nightschool.ps1` — the script awaiting approval
 
 Hermes source (read-only, for Codex inspection):
-- `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\resources\app.asar`
+- `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\resources\app.asar`
 - Key files inside: `electron/main.cjs`, `electron/connection-config.cjs`, `electron/backend-ready.cjs`, `electron/bootstrap-runner.cjs`
+
+

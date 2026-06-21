@@ -12,7 +12,7 @@ NightSchool runs a second Hermes Desktop profile alongside (or alternating with)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Larry's Workstation                      │
+│                     operator's Workstation                      │
 │                                                             │
 │  ┌─────────────────────────┐  ┌──────────────────────────┐  │
 │  │   Primary Hermes        │  │   NightSchool Hermes      │  │
@@ -54,7 +54,7 @@ NightSchool runs a second Hermes Desktop profile alongside (or alternating with)
 
 | Component | Path | NightSchool access |
 |---|---|---|
-| Hermes.exe binary | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Read-only (launch only) |
+| Hermes.exe binary | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Read-only (launch only) |
 | app.asar | `.../release/win-unpacked/resources/app.asar` | Read-only (inspection only) |
 | Ollama endpoint | `localhost:11434` | Read (API calls) |
 
@@ -62,11 +62,11 @@ NightSchool runs a second Hermes Desktop profile alongside (or alternating with)
 
 | Component | Path | Created by |
 |---|---|---|
-| Electron userData root | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\` | Hermes.exe on first launch (via `HERMES_DESKTOP_USER_DATA_DIR`) |
+| Electron userData root | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\` | Hermes.exe on first launch (via `HERMES_DESKTOP_USER_DATA_DIR`) |
 | connection.json | `Hermes-NightSchool\connection.json` | Hermes.exe on first launch |
 | active-profile.json | `Hermes-NightSchool\active-profile.json` | Hermes.exe on first launch |
 | Chromium session/cache | `Hermes-NightSchool\[chromium dirs]` | Hermes.exe on first launch |
-| Backend agent root | `C:\Users\larry\.hermes-nightschool\` | Bootstrap runner on first launch (via `HERMES_HOME`) |
+| Backend agent root | `$USER_HOME\.hermes-nightschool\` | Bootstrap runner on first launch (via `HERMES_HOME`) |
 | Python venv | `.hermes-nightschool\[venv dir]` | Bootstrap runner on first launch |
 | Backend profiles | `.hermes-nightschool\profiles\` | Bootstrap runner / agent on first launch |
 | Backend logs | `.hermes-nightschool\logs\` | Agent at runtime |
@@ -88,7 +88,7 @@ NightSchool runs a second Hermes Desktop profile alongside (or alternating with)
 ### 3.1 Launch sequence
 
 ```
-Larry runs:
+operator runs:
 launch_hermes_nightschool.ps1
         │
         ├─ [Lane F guard] check HERMES_DESKTOP_USER_DATA_DIR ≠ primary userData path
@@ -96,7 +96,7 @@ launch_hermes_nightschool.ps1
         │                 → if either matches primary → HARD BLOCK, exit 1
         │
         ├─ set env: HERMES_DESKTOP_USER_DATA_DIR = C:\...\Hermes-NightSchool
-        ├─ set env: HERMES_HOME = C:\Users\larry\.hermes-nightschool
+        ├─ set env: HERMES_HOME = $USER_HOME\.hermes-nightschool
         │
         └─ Start-Process Hermes.exe
                 │
@@ -162,24 +162,24 @@ NightSchool Hermes.exe
 ### No-touch zone (Lane F hard enforces)
 
 ```
-C:\Users\larry\AppData\Roaming\Hermes\          ← primary userData — NEVER WRITTEN
-C:\Users\larry\.hermes\                          ← primary backend root — NEVER WRITTEN
-C:\Users\larry\AppData\Local\hermes-desktop-updater\  ← updater — NEVER WRITTEN
+`$APPDATA_ROAMING_ROOT\Hermes\          ← primary userData — NEVER WRITTEN
+`$USER_HOME\.hermes\                          ← primary backend root — NEVER WRITTEN
+`$APPDATA_LOCAL_ROOT\hermes-desktop-updater\  ← updater — NEVER WRITTEN
 ```
 
 ### NightSchool write zone (fully owned)
 
 ```
-C:\Users\larry\AppData\Roaming\Hermes-NightSchool\   ← NightSchool userData
-C:\Users\larry\.hermes-nightschool\                  ← NightSchool backend root
-L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\  ← build artifacts
+`$APPDATA_ROAMING_ROOT\Hermes-NightSchool\   ← NightSchool userData
+`$USER_HOME\.hermes-nightschool\                  ← NightSchool backend root
+`$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\  ← build artifacts
 ```
 
 ### Shared read-only
 
 ```
-C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe
-C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\resources\app.asar
+`$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe
+`$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\resources\app.asar
 ```
 
 ---
@@ -235,20 +235,20 @@ State fully isolated by env vars
 Only one Hermes instance can run per Windows user session. Operational model becomes:
 
 ```
-Primary Hermes closed by Larry
+Primary Hermes closed by operator
   ↓
 launch_hermes_nightschool.ps1 runs
   ↓ (launch script should check if Hermes.exe is already running → warn/block)
 NightSchool Hermes starts
   ↓
-Larry does NightSchool work
+operator does NightSchool work
   ↓
 NightSchool Hermes closed
   ↓
 Primary Hermes re-opened normally
 ```
 
-**Lane F addition if Q4 = YES:** Launch script must detect whether any Hermes.exe process is running before launch (via `Get-Process`) and warn Larry if so. Cannot hard-block (user may want to force it) but must surface the risk.
+**Lane F addition if Q4 = YES:** Launch script must detect whether any Hermes.exe process is running before launch (via `Get-Process`) and warn operator if so. Cannot hard-block (user may want to force it) but must surface the risk.
 
 ---
 
@@ -258,12 +258,12 @@ Primary Hermes re-opened normally
 
 | # | Tripwire | When checked | Failure action |
 |---|---|---|---|
-| T1 | `HERMES_DESKTOP_USER_DATA_DIR` ≠ `C:\Users\larry\AppData\Roaming\Hermes` | Launch script (pre-launch) | Hard block, exit 1 |
-| T2 | `HERMES_HOME` ≠ `C:\Users\larry\.hermes` | Launch script (pre-launch) | Hard block, exit 1 |
+| T1 | `HERMES_DESKTOP_USER_DATA_DIR` ≠ `$APPDATA_ROAMING_ROOT\Hermes` | Launch script (pre-launch) | Hard block, exit 1 |
+| T2 | `HERMES_HOME` ≠ `$USER_HOME\.hermes` | Launch script (pre-launch) | Hard block, exit 1 |
 | T3 | NightSchool `connection.json` endpoint ≠ `localhost:9119` | Phase 1 card verification | Flag, document, do not proceed to Phase 2 |
 | T4 | Primary `Hermes\connection.json` unchanged after NightSchool launch | Phase 1 drift check | Flag, investigate before Phase 2 |
-| T5 | No files written to `C:\Users\larry\.hermes\` during bootstrap | Phase 1 bootstrap inventory | Flag as Lane F violation |
-| T6 | No files written to `C:\Users\larry\AppData\Roaming\Hermes\` during launch | Phase 1 post-launch check | Flag as Lane F violation |
+| T5 | No files written to `$USER_HOME\.hermes\` during bootstrap | Phase 1 bootstrap inventory | Flag as Lane F violation |
+| T6 | No files written to `$APPDATA_ROAMING_ROOT\Hermes\` during launch | Phase 1 post-launch check | Flag as Lane F violation |
 
 *T7+: pending Q5 answer from Codex (safeStorage, env var inheritance, temp dir contamination).*
 
@@ -301,3 +301,5 @@ This document should be updated after:
 - Codex answers Q1–Q5 (fill in the [Q#] gaps above)
 - First NightSchool launch completes (add bootstrap inventory as §12 addendum)
 - Phase 1 drift check completes (update T4–T6 with evidence)
+
+

@@ -53,7 +53,7 @@ Hermes booting into the wrong connection mode than to a dead distro.
 
 The Hermes desktop connection config in:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
 
 had been set to:
 
@@ -260,3 +260,5 @@ There are multiple meaningful layers:
 The goal is not merely to make Hermes respond again. The goal is to recover the
 correct development shape, understand its boundaries, and only then automate or
 refactor it.
+
+

@@ -32,8 +32,8 @@ Before starting, keep these boundaries:
 - leave `L:\WSL` unchanged
 - leave current Ollama on `11434` unchanged
 - leave Commander/Apollo Telegram ownership unchanged for now
-- do not reuse `C:\Users\larry\.hermes\profiles\commander`
-- do not reuse `C:\Users\larry\.hermes\profiles\apollo`
+- do not reuse `$USER_HOME\.hermes\profiles\commander`
+- do not reuse `$USER_HOME\.hermes\profiles\apollo`
 
 ## Folder Layout
 
@@ -133,8 +133,8 @@ Its profile/state should live only under:
 
 Do not point it at:
 
-- `C:\Users\larry\.hermes\profiles\commander`
-- `C:\Users\larry\.hermes\profiles\apollo`
+- `$USER_HOME\.hermes\profiles\commander`
+- `$USER_HOME\.hermes\profiles\apollo`
 
 ### 6. Point Hermes to the new endpoint only
 
@@ -222,3 +222,5 @@ The first milestone is simple:
 
 If that becomes stable, it becomes the safe workhorse lane for rebuilding the
 rest of the system.
+
+

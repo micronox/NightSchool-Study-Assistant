@@ -59,7 +59,7 @@ Interpretation:
 
 Earlier troubleshooting found:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
 
 had Hermes desktop pinned to:
 
@@ -77,7 +77,7 @@ That file was changed so top-level mode became:
 
 Backup:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json.bak-20260620-2136`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json.bak-20260620-2136`
 
 ### 4. Dashboard recovery is not the same as messaging recovery
 
@@ -153,16 +153,16 @@ The likely next practical work is:
 
 Longer recovery note:
 
-- [HERMES-REPRO-RE-ESTABLISH-NOTES-2026-06-20-2215.md](C:/Users/larry/Documents/Troubleshoot/HERMES-REPRO-RE-ESTABLISH-NOTES-2026-06-20-2215.md)
+- [HERMES-REPRO-RE-ESTABLISH-NOTES-2026-06-20-2215.md](`$TROUBLESHOOT_ROOT/HERMES-REPRO-RE-ESTABLISH-NOTES-2026-06-20-2215.md)
 
 Earlier handoff:
 
-- [CODEX-HANDOFF-2026-06-20-HERMES-RESTART.md](C:/Users/larry/Documents/Troubleshoot/CODEX-HANDOFF-2026-06-20-HERMES-RESTART.md)
+- [CODEX-HANDOFF-2026-06-20-HERMES-RESTART.md](`$TROUBLESHOOT_ROOT/CODEX-HANDOFF-2026-06-20-HERMES-RESTART.md)
 
 Broader rebuild context:
 
-- [NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md](C:/Users/larry/Documents/Troubleshoot/NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md)
-- [NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md](C:/Users/larry/Documents/Troubleshoot/NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md)
+- [NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md](`$TROUBLESHOOT_ROOT/NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md)
+- [NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md](`$TROUBLESHOOT_ROOT/NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md)
 
 ## Bottom Line
 
@@ -172,3 +172,5 @@ Fresh Codex should begin from this assumption:
 - the current unresolved issue is the mismatch between dashboard/runtime state,
   desktop-app state, and messaging/session history
 - the user wants surgical understanding first, automation second
+
+

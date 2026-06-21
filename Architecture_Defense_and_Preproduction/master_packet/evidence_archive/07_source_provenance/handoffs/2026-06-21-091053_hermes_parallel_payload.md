@@ -7,7 +7,7 @@
 ## Shared ground truth
 
 - Active working root:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles`
 - Approved Discord shape:
   - one master guild: `WorldFoundryInk`
   - NightSchool belongs inside it as a `[NightSchool]` category
@@ -33,7 +33,7 @@
 
 - A concrete channel/category layout for `WorldFoundryInk`
 - A scoped permission model for the NightSchool bot
-- A short Larry checklist for what to click in Discord and the Developer Portal
+- A short operator checklist for what to click in Discord and the Developer Portal
 - A note on how Codex, Claude, Hermes, and future projects can each map to categories or roles later without breaking segregation
 
 ### Non-negotiables
@@ -71,21 +71,21 @@ WorldFoundryInk
 
 - A validation pass on the safe-reuse launcher
 - A concise runbook for the first controlled NightSchool launch
-- A short list of exactly what Larry should verify after launch
+- A short list of exactly what operator should verify after launch
 
 ### Non-negotiables
 
 - no simultaneous primary + NightSchool Hermes desktop sessions
 - no fresh bootstrap into `.hermes-nightschool`
 - no fixed-port assumption as the isolation mechanism
-- preserve `HERMES_DESKTOP_HERMES_ROOT = C:\Users\larry\.hermes\hermes-agent`
+- preserve `HERMES_DESKTOP_HERMES_ROOT = $USER_HOME\.hermes\hermes-agent`
 - primary Hermes must be closed before launch
 
 ### Key files
 
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-032213_phase1A_execution_spec.md`
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\isolation_manifest.md`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-032213_phase1A_execution_spec.md`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\isolation_manifest.md`
 
 ### Verification target for Codex
 
@@ -100,3 +100,5 @@ WorldFoundryInk
   - own the Phase 1A launcher/runbook review
 
 These are safe to run in parallel because one is Discord architecture and the other is NightSchool launch prep. The actual NightSchool desktop launch itself remains sequential and still requires the primary Hermes desktop to be closed.
+
+

@@ -13,11 +13,11 @@ A joint Claude/Codex review of the PRD before any Phase 0 execution began. Goal:
 
 ## What Was Resolved
 
-### Decisions answered (from Larry via Codex)
+### Decisions answered (from operator via Codex)
 
 | Question | Answer |
 |---|---|
-| Primary Hermes install — greenfield or existing? | Existing. Lives outside `L:\WSL_Projects_Folder\`. Phase 0 locates it via read-only inspection; do not assume its location. |
+| Primary Hermes install — greenfield or existing? | Existing. Lives outside `$PROJECTS_ROOT\`. Phase 0 locates it via read-only inspection; do not assume its location. |
 | Local inference runtime | **Confirmed: Ollama → qwen3.6:latest.** Operationally verified in the primary Hermes environment. |
 | Frontier routing | **Nemotron 3 Super 120b A12b:Free** as frontier default; **Nemotron 3 Ultra 550b A55b:Free** as escalation-only. Both via Nous subscription. |
 | `Architecture_Defense\` folder | Adjacent planning/audit context — in scope for reference, out of scope as build root. Agents do not write here. |
@@ -76,3 +76,5 @@ That is the complete context contract for Phase 0. No other files need to be rea
 | `PRD/_backups/2026-06-21_v2_pre-review-rename.md` | Backup of pre-edit state |
 | `handoffs/2026-06-21_PRD_review.md` | Claude Cowork review notes |
 | `handoffs/2026-06-21_pre-defense-pass-closeout.md` | This file |
+
+

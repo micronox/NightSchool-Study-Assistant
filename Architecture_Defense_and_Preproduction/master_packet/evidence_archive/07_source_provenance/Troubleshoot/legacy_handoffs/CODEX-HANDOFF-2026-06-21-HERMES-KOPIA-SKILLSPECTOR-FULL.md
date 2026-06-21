@@ -27,15 +27,15 @@ Main conclusion:
 ### Current runtime snapshot
 
 - Hermes project:
-  - `C:\Users\larry\.hermes\hermes-agent`
+  - `$USER_HOME\.hermes\hermes-agent`
 - Hermes Python:
-  - `C:\Users\larry\.hermes\hermes-agent\venv\Scripts\python.exe`
+  - `$USER_HOME\.hermes\hermes-agent\venv\Scripts\python.exe`
 - Hermes CLI:
-  - `C:\Users\larry\.hermes\hermes-agent\venv\Scripts\hermes.exe`
+  - `$USER_HOME\.hermes\hermes-agent\venv\Scripts\hermes.exe`
 - Hermes-managed `uv`:
-  - `C:\Users\larry\.hermes\bin\uv.exe`
+  - `$USER_HOME\.hermes\bin\uv.exe`
 - uv-managed base Python:
-  - `C:\Users\larry\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`
+  - `$APPDATA_ROAMING_ROOT\uv\python\cpython-3.11-windows-x86_64-none\python.exe`
 - Hermes Python version:
   - `3.11.15`
 
@@ -56,12 +56,12 @@ Main conclusion:
 ### Backup created
 
 - Backup file:
-  - `C:\Users\larry\hermes-backup-2026-06-21-010944.zip`
+  - `$USER_HOME\hermes-backup-2026-06-21-010944.zip`
 
 Restore command if ever needed:
 
 ```powershell
-hermes import C:\Users\larry\hermes-backup-2026-06-21-010944.zip
+hermes import `$USER_HOME\hermes-backup-2026-06-21-010944.zip
 ```
 
 ## SkillSpector Investigation
@@ -189,7 +189,7 @@ If a repo is not Hermes, it gets its own `.venv`.
 
 Created:
 
-- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
+- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
 
 This file records:
 
@@ -204,10 +204,10 @@ We explored versioned backup options and started scaffolding for `restic`, then 
 
 Files created:
 
-- [restic-excludes.txt](C:/Users/larry/Documents/Troubleshoot/restic/restic-excludes.txt)
-- [Invoke-ResticBackup.ps1](C:/Users/larry/Documents/Troubleshoot/restic/Invoke-ResticBackup.ps1)
-- [Invoke-ResticRetention.ps1](C:/Users/larry/Documents/Troubleshoot/restic/Invoke-ResticRetention.ps1)
-- [RESTIC-SETUP-NOTES.md](C:/Users/larry/Documents/Troubleshoot/restic/RESTIC-SETUP-NOTES.md)
+- [restic-excludes.txt](`$TROUBLESHOOT_ROOT/restic/restic-excludes.txt)
+- [Invoke-ResticBackup.ps1](`$TROUBLESHOOT_ROOT/restic/Invoke-ResticBackup.ps1)
+- [Invoke-ResticRetention.ps1](`$TROUBLESHOOT_ROOT/restic/Invoke-ResticRetention.ps1)
+- [RESTIC-SETUP-NOTES.md](`$TROUBLESHOOT_ROOT/restic/RESTIC-SETUP-NOTES.md)
 
 Important note:
 
@@ -246,11 +246,11 @@ At the time of handoff, the user was asking whether Google Cloud Storage was the
 
 ## Files Created In This Session
 
-- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](C:/Users/larry/Documents/Troubleshoot/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
-- [restic-excludes.txt](C:/Users/larry/Documents/Troubleshoot/restic/restic-excludes.txt)
-- [Invoke-ResticBackup.ps1](C:/Users/larry/Documents/Troubleshoot/restic/Invoke-ResticBackup.ps1)
-- [Invoke-ResticRetention.ps1](C:/Users/larry/Documents/Troubleshoot/restic/Invoke-ResticRetention.ps1)
-- [RESTIC-SETUP-NOTES.md](C:/Users/larry/Documents/Troubleshoot/restic/RESTIC-SETUP-NOTES.md)
+- [HERMES-HARDENING-RUNBOOK-2026-06-21.md](`$TROUBLESHOOT_ROOT/HERMES-HARDENING-RUNBOOK-2026-06-21.md)
+- [restic-excludes.txt](`$TROUBLESHOOT_ROOT/restic/restic-excludes.txt)
+- [Invoke-ResticBackup.ps1](`$TROUBLESHOOT_ROOT/restic/Invoke-ResticBackup.ps1)
+- [Invoke-ResticRetention.ps1](`$TROUBLESHOOT_ROOT/restic/Invoke-ResticRetention.ps1)
+- [RESTIC-SETUP-NOTES.md](`$TROUBLESHOOT_ROOT/restic/RESTIC-SETUP-NOTES.md)
 
 ## Recommended Next Step In Fresh Chat
 
@@ -278,3 +278,5 @@ Do:
 - preserve the backup
 - keep unrelated Python projects in their own `.venv`
 - help the user with GUI-first backup setup if possible
+
+

@@ -9,9 +9,9 @@
 
 | Item | Path |
 |---|---|
-| Project root | `L:\WSL_Projects_Folder\Nightschool_Study\` |
-| Working directory | `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\` |
-| Final deliverable | `L:\WSL_Projects_Folder\Nightschool_Study\App_Final_Deliverable\` |
+| Project root | `$PROJECTS_ROOT\Nightschool_Study\` |
+| Working directory | `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\` |
+| Final deliverable | `$PROJECTS_ROOT\Nightschool_Study\App_Final_Deliverable\` |
 | WSL mount path | **Confirmed:** `L:\ → /mnt/l` (type 9p). Full path: `/mnt/l/WSL_Projects_Folder/Nightschool_Study/` |
 | NightSchool app port range | **8100–8199** (confirmed clear of all detected services) |
 
@@ -35,13 +35,13 @@
 | Item | Value |
 |---|---|
 | App | Hermes Desktop v0.5.6 (internal package version: 0.15.1) |
-| Exe path | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` |
-| Config root (userData) | `C:\Users\larry\AppData\Roaming\Hermes\` |
-| Connection file | `C:\Users\larry\AppData\Roaming\Hermes\connection.json` |
+| Exe path | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` |
+| Config root (userData) | `$APPDATA_ROAMING_ROOT\Hermes\` |
+| Connection file | `$APPDATA_ROAMING_ROOT\Hermes\connection.json` |
 | Connection mode | `local` |
 | Local endpoint | `http://localhost:9119` (authMode: oauth) |
-| Backend agent root | `C:\Users\larry\.hermes\` (default `HERMES_HOME`) |
-| Updater | `C:\Users\larry\AppData\Local\hermes-desktop-updater\` |
+| Backend agent root | `$USER_HOME\.hermes\` (default `HERMES_HOME`) |
+| Updater | `$APPDATA_LOCAL_ROOT\hermes-desktop-updater\` |
 | WSL presence | Not in WSL PATH — Windows desktop app only |
 | Ollama model | `qwen3.6:35b-a3b` (23.9 GB) on `localhost:11434` |
 | Inspection method | Read-only filesystem inspection + asar extraction via Desktop Commander |
@@ -53,11 +53,11 @@
 
 | Item | Value | Isolation mechanism |
 |---|---|---|
-| Exe binary | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary (read-only) — isolation is via env vars, not separate binary |
-| Electron userData (config root) | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\` | `HERMES_DESKTOP_USER_DATA_DIR` env var (set in launch script) |
-| connection.json | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\connection.json` | Written by NightSchool Hermes on first launch |
-| Backend agent root | `C:\Users\larry\.hermes-nightschool\` | `HERMES_HOME` env var (set in launch script) |
-| Shared agent code root | `C:\Users\larry\.hermes\hermes-agent` | `HERMES_DESKTOP_HERMES_ROOT` env var pins NightSchool to the existing agent checkout |
+| Exe binary | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary (read-only) — isolation is via env vars, not separate binary |
+| Electron userData (config root) | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\` | `HERMES_DESKTOP_USER_DATA_DIR` env var (set in launch script) |
+| connection.json | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\connection.json` | Written by NightSchool Hermes on first launch |
+| Backend agent root | `$USER_HOME\.hermes-nightschool\` | `HERMES_HOME` env var (set in launch script) |
+| Shared agent code root | `$USER_HOME\.hermes\hermes-agent` | `HERMES_DESKTOP_HERMES_ROOT` env var pins NightSchool to the existing agent checkout |
 | Launch script | `Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1` | Sets isolation env vars, blocks concurrent primary Hermes use, clears remote overrides, launches the shared exe |
 | Launch mode | Sequential only | Hermes desktop is single-instance; primary Hermes must be closed before NightSchool launch |
 | Bootstrap mode | Reuse-only in Phase 1A | Fresh `.hermes-nightschool` bootstrap is forbidden until the installer stops writing user-scoped env changes |
@@ -65,9 +65,9 @@
 **Source confirmation:** `HERMES_DESKTOP_USER_DATA_DIR` is explicitly read in `electron/main.cjs` lines 112–116 of the asar. `HERMES_HOME` is threaded through `bootstrap-runner.cjs` to all install/agent stages. `HERMES_DESKTOP_HERMES_ROOT` provides the code-root override that keeps Phase 1A on the shared checkout. These are first-class mechanisms — not undocumented hacks.
 
 **Lane F cross-contamination tripwires:**
-- NightSchool must never write to `C:\Users\larry\AppData\Roaming\Hermes\` (primary userData)
-- NightSchool must never write to `C:\Users\larry\.hermes\` (primary backend root) — `HERMES_HOME` must be set before launch
-- NightSchool must always set `HERMES_DESKTOP_HERMES_ROOT = C:\Users\larry\.hermes\hermes-agent` during Phase 1A so the desktop never falls into a fresh bootstrap path
+- NightSchool must never write to `$APPDATA_ROAMING_ROOT\Hermes\` (primary userData)
+- NightSchool must never write to `$USER_HOME\.hermes\` (primary backend root) — `HERMES_HOME` must be set before launch
+- NightSchool must always set `HERMES_DESKTOP_HERMES_ROOT = $USER_HOME\.hermes\hermes-agent` during Phase 1A so the desktop never falls into a fresh bootstrap path
 - Primary Hermes desktop must be fully closed before NightSchool launch; a concurrent second desktop instance is forbidden
 - NightSchool must not invoke updater or uninstall flows while sharing the primary Hermes code root
 - Lane F drift check: after first NightSchool launch, verify primary `connection.json` is unchanged and user-scoped PATH / `HERMES_HOME` were not mutated
@@ -76,13 +76,13 @@
 
 | Item | Value |
 |---|---|
-| Repository | `E:\KopiaRepo` |
-| CLI | `C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe` |
-| Policy A | `L:\WSL_Projects_Folder\Nightschool_Study\` — NightSchool build artifacts |
-| Policy B1 | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\` — NightSchool userData |
-| Policy B2 | `C:\Users\larry\.hermes-nightschool\` — NightSchool backend state |
-| Policy C1 | `C:\Users\larry\AppData\Roaming\Hermes\` — primary Hermes baseline |
-| Policy C2 | `C:\Users\larry\.hermes\` — primary Hermes home baseline |
+| Repository | `$KOPIA_REPO` |
+| CLI | `$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe` |
+| Policy A | `$PROJECTS_ROOT\Nightschool_Study\` — NightSchool build artifacts |
+| Policy B1 | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\` — NightSchool userData |
+| Policy B2 | `$USER_HOME\.hermes-nightschool\` — NightSchool backend state |
+| Policy C1 | `$APPDATA_ROAMING_ROOT\Hermes\` — primary Hermes baseline |
+| Policy C2 | `$USER_HOME\.hermes\` — primary Hermes home baseline |
 
 **T8 — Kopia snapshot boundaries must mirror Lane F path boundaries.**
 NightSchool Kopia policies must never include primary Hermes paths in their snapshot roots or through parent-path coverage. Policy C snapshots are evidence baselines only, not restore targets during an active NightSchool session.
@@ -99,7 +99,7 @@ NightSchool Kopia policies must never include primary Hermes paths in their snap
 
 | Folder | Classification | Notes |
 |---|---|---|
-| `L:\WSL_Projects_Folder\Architecture_Defense\` | Audit/reference context | Contains Codex pre-install snapshots and headroom vetting docs. Lane F may read for reference. Agents must not write here during NightSchool build. |
+| `$PROJECTS_ROOT\Architecture_Defense\` | Audit/reference context | Contains Codex pre-install snapshots and headroom vetting docs. Lane F may read for reference. Agents must not write here during NightSchool build. |
 
 ---
 
@@ -132,3 +132,5 @@ NightSchool Kopia policies must never include primary Hermes paths in their snap
 | Date | Phase | Work item | Model lane used | Flag? |
 |---|---|---|---|---|
 | — | — | — | — | — |
+
+

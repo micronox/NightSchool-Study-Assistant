@@ -19,7 +19,7 @@ Example:
 
 ## Folder Rule
 
-Under `C:\Users\larry\Documents\Troubleshoot`:
+Under `$TROUBLESHOOT_ROOT`:
 
 - `handoff` is for concise reset-ready handoffs
 - `full_context` is for richer notes, changelogs, and broader context captures
@@ -27,3 +27,5 @@ Under `C:\Users\larry\Documents\Troubleshoot`:
 ## Cleanup Direction
 
 Daily cleanup and organization should eventually be automated with a Hermes cron job, but that automation is intentionally deferred for now.
+
+

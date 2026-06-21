@@ -19,7 +19,7 @@ Hermes has been partially moved from broken `custom/OpenRouter/invalid-Qwen` sta
   - model: `qwen3.6:latest`
   - provider: `Custom endpoint`
 - Backed up Hermes desktop local storage to:
-  - `C:\Users\larry\Documents\Troubleshoot\backups\hermes-localstorage-20260621-032620`
+  - `$TROUBLESHOOT_ROOT\backups\hermes-localstorage-20260621-032620`
 - Stopped Hermes desktop packaged app processes
 
 ## Important unresolved items
@@ -52,5 +52,7 @@ In the new chat:
 
 ## Files produced for this handoff
 
-- `C:\Users\larry\Documents\Troubleshoot\CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md`
-- `C:\Users\larry\Documents\Troubleshoot\CODEX-HANDOFF-2026-06-21-HERMES-QWEN-LOCAL-LITE.md`
+- `$TROUBLESHOOT_ROOT\CODEX-CHANGELOG-2026-06-21-HERMES-QWEN-LOCAL-NOUS-BACKUP-PENDING.md`
+- `$TROUBLESHOOT_ROOT\CODEX-HANDOFF-2026-06-21-HERMES-QWEN-LOCAL-LITE.md`
+
+

@@ -5,9 +5,9 @@ Hermes is not currently in “broken reinstall” territory. Treat it as a worki
 ## What was completed
 
 - Local Kopia repo created at:
-  - `E:\KopiaRepo`
+  - `$KOPIA_REPO`
 - `L:\` backup tuned and working
-- `C:\Users\larry` backup tuned down to a much leaner shape by excluding:
+- `$USER_HOME` backup tuned down to a much leaner shape by excluding:
   - normal personal folders
   - `CrossDevice/`
   - `OneDrive/`
@@ -20,13 +20,13 @@ Hermes is not currently in “broken reinstall” territory. Treat it as a worki
 - WhatsApp allowlist hardened from `*` to:
   - `19704203617`
 - Stale Hermes alias `.bat` launchers removed from:
-  - `C:\Users\larry\.local\bin`
+  - `$USER_HOME\.local\bin`
 - Startup verification script created:
-  - [Verify-Hermes-Startup.ps1](C:/Users/larry/Documents/Troubleshoot/Verify-Hermes-Startup.ps1)
+  - [Verify-Hermes-Startup.ps1](`$TROUBLESHOOT_ROOT/Verify-Hermes-Startup.ps1)
 - Autorun shortcut added at Windows login:
   - `Hermes Startup Verify.lnk`
 - Manual command-center shortcuts created in:
-  - `C:\Users\larry\Desktop\WorldFoundryInk_CommandCenter`
+  - `$DESKTOP_ROOT\WorldFoundryInk_CommandCenter`
 
 ## Current validated Hermes state
 
@@ -99,4 +99,6 @@ Do:
 
 For the full detailed archive/changelist, use:
 
-- [CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md](C:/Users/larry/Documents/Troubleshoot/CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md)
+- [CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md](`$TROUBLESHOOT_ROOT/CODEX-CHANGELOG-2026-06-21-HERMES-KOPIA-COMMANDCENTER-FULL.md)
+
+

@@ -4,7 +4,7 @@
 
 Versioned local backups for:
 
-- `C:\Users\larry`
+- `$USER_HOME`
 - `L:\`
 
 ## What This Gives You
@@ -29,7 +29,7 @@ Good candidates from the current machine:
 
 Avoid placing the restic repository inside:
 
-- `C:\Users\larry`
+- `$USER_HOME`
 - `L:\`
 
 because those are backup sources.
@@ -37,7 +37,7 @@ because those are backup sources.
 ## Example Repository Path
 
 ```powershell
-G:\Backups\restic-larry
+G:\Backups\restic-operator
 ```
 
 ## Password File
@@ -48,26 +48,26 @@ Example:
 
 ```powershell
 New-Item -ItemType Directory -Force -Path G:\Backups\Secrets | Out-Null
-Set-Content -LiteralPath G:\Backups\Secrets\restic-larry-password.txt -Value 'choose-a-long-unique-passphrase'
+Set-Content -LiteralPath G:\Backups\Secrets\restic-operator-password.txt -Value 'choose-a-long-unique-passphrase'
 ```
 
 ## First-Time Initialize + Backup
 
 ```powershell
-cd C:\Users\larry\Documents\Troubleshoot\restic
+cd `$TROUBLESHOOT_ROOT\restic
 .\Invoke-ResticBackup.ps1 `
-  -RepositoryPath 'G:\Backups\restic-larry' `
-  -PasswordFile 'G:\Backups\Secrets\restic-larry-password.txt' `
+  -RepositoryPath 'G:\Backups\restic-operator' `
+  -PasswordFile 'G:\Backups\Secrets\restic-operator-password.txt' `
   -InitializeIfMissing
 ```
 
 ## Later Backup Runs
 
 ```powershell
-cd C:\Users\larry\Documents\Troubleshoot\restic
+cd `$TROUBLESHOOT_ROOT\restic
 .\Invoke-ResticBackup.ps1 `
-  -RepositoryPath 'G:\Backups\restic-larry' `
-  -PasswordFile 'G:\Backups\Secrets\restic-larry-password.txt'
+  -RepositoryPath 'G:\Backups\restic-operator' `
+  -PasswordFile 'G:\Backups\Secrets\restic-operator-password.txt'
 ```
 
 ## Retention / Pruning
@@ -80,10 +80,10 @@ This keeps:
 - 12 monthly
 
 ```powershell
-cd C:\Users\larry\Documents\Troubleshoot\restic
+cd `$TROUBLESHOOT_ROOT\restic
 .\Invoke-ResticRetention.ps1 `
-  -RepositoryPath 'G:\Backups\restic-larry' `
-  -PasswordFile 'G:\Backups\Secrets\restic-larry-password.txt'
+  -RepositoryPath 'G:\Backups\restic-operator' `
+  -PasswordFile 'G:\Backups\Secrets\restic-operator-password.txt'
 ```
 
 ## What The Exclude List Does
@@ -96,3 +96,5 @@ The backup includes your real files, but skips common temp and cache folders suc
 - local virtual environments
 
 That keeps the repository smaller and avoids wasting snapshots on disposable build artifacts.
+
+

@@ -1,3 +1,4 @@
-2026/06/20-21:57:14.523 1a05c Reusing MANIFEST C:\Users\larry\AppData\Roaming\Hermes\Local Storage\leveldb/MANIFEST-000001
+2026/06/20-21:57:14.523 1a05c Reusing MANIFEST `$APPDATA_ROAMING_ROOT\Hermes\Local Storage\leveldb/MANIFEST-000001
 2026/06/20-21:57:14.525 1a05c Recovering log #4
-2026/06/20-21:57:14.525 1a05c Reusing old log C:\Users\larry\AppData\Roaming\Hermes\Local Storage\leveldb/000004.log 
+2026/06/20-21:57:14.525 1a05c Reusing old log `$APPDATA_ROAMING_ROOT\Hermes\Local Storage\leveldb/000004.log 
+

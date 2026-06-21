@@ -131,7 +131,7 @@ From docs and advanced‑user guidance:[^5][^6][^3][^4][^2]
 A Hermes‑aligned, multi‑client layout:[^1][^3][^4][^9]
 
 ```text
-/home/larry/
+`$WSL_USER_HOME/
   .hermes/
     profiles/
       client-dev/
@@ -368,4 +368,5 @@ If you follow this model—single WSL Hermes backend, carefully scoped profiles,
 [^26]: https://www.reddit.com/r/hermesagent/comments/1t2sqjj/hermes_agent_just_added_real_multiagent/
 
 [^27]: https://www.youtube.com/watch?v=WNYe5mD4fY8
+
 

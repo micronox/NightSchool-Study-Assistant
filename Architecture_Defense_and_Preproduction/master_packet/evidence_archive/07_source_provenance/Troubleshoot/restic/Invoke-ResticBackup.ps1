@@ -7,7 +7,7 @@ param(
     [switch]$InitializeIfMissing,
 
     [string[]]$Sources = @(
-        'C:\Users\larry',
+        '`$USER_HOME',
         'L:\'
     )
 )
@@ -82,7 +82,7 @@ $hostTag = "host:$env:COMPUTERNAME"
 $backupArgs = @(
     'backup'
     '--exclude-file', $excludeFile
-    '--tag', 'scope:larry'
+    '--tag', 'scope:operator'
     '--tag', 'scope:l-drive'
     '--tag', $hostTag
     '--tag', "run:$timestamp"
@@ -98,3 +98,4 @@ Invoke-Restic -Arguments $backupArgs
 Write-Host ""
 Write-Host "Current snapshots:" -ForegroundColor Cyan
 Invoke-Restic -Arguments @('snapshots')
+

@@ -20,7 +20,7 @@ This handoff does not reconstruct the full prior session, but it captures the
 
 Related existing handoff:
 
-- [NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md](C:/Users/larry/Documents/Troubleshoot/NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md)
+- [NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md](`$TROUBLESHOOT_ROOT/NORTHSTAR-REBUILD-HANDOFF-2026-06-17.md)
 
 ## What The User Saw
 
@@ -51,10 +51,10 @@ state.
 Evidence gathered:
 
 - Hermes desktop processes were running
-- `C:\Users\larry\.hermes\logs\desktop.log` repeatedly showed:
+- `$USER_HOME\.hermes\logs\desktop.log` repeatedly showed:
   - `Desktop boot failed: Your remote gateway session has expired. Open Settings → Gateway and click "Sign in" again.`
 - The persisted desktop connection file was:
-  - `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
+  - `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
 - Its contents before the fix were:
 
 ```json
@@ -79,11 +79,11 @@ Important conclusion:
 
 The file below was updated:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
 
 Backup created:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json.bak-20260620-2136`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json.bak-20260620-2136`
 
 Current contents after the fix:
 
@@ -102,9 +102,9 @@ Only the top-level `mode` was changed from `remote` to `local`.
 
 ## Additional Observations From This Pass
 
-- `C:\Users\larry\.hermes\config.yaml` exists and is substantial
-- `C:\Users\larry\.hermes\auth.json` exists
-- `C:\Users\larry\.hermes\logs\desktop.log` was the most useful current log
+- `$USER_HOME\.hermes\config.yaml` exists and is substantial
+- `$USER_HOME\.hermes\auth.json` exists
+- `$USER_HOME\.hermes\logs\desktop.log` was the most useful current log
 - no normal user Startup entry for Hermes was found in the places checked
 - Hermes appeared to be launching, but launching into the wrong connection mode
 
@@ -147,7 +147,9 @@ The most important discovery from this pass is:
 
 - the machine did not first fail on WSL startup
 - Hermes desktop was pinned to a stale remote OAuth gateway mode
-- switching `C:\Users\larry\AppData\Roaming\Hermes\connection.json` from
+- switching `$APPDATA_ROAMING_ROOT\Hermes\connection.json` from
   `"mode": "remote"` to `"mode": "local"` was the key fix applied
 
 This is the place to resume from.
+
+

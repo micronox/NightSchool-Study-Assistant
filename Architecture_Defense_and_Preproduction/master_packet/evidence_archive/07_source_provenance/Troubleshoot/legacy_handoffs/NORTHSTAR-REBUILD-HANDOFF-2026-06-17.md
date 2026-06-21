@@ -29,8 +29,8 @@ You already have four strong handoff layers on disk:
 
 ### 1. Research and incident narrative
 
-- [NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md](C:/Users/larry/Documents/Troubleshoot/NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md)
-- `C:\Users\larry\Documents\Troubleshoot\checkins\`
+- [NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md](`$TROUBLESHOOT_ROOT/NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md)
+- `$TROUBLESHOOT_ROOT\checkins\`
   - currently `40` timestamped check-ins
 
 These capture:
@@ -69,7 +69,7 @@ Key files:
 
 ### 3. Clean external inference runbook
 
-- [LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md](C:/Users/larry/Documents/Troubleshoot/LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md)
+- [LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md](`$TROUBLESHOOT_ROOT/LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md)
 
 This is the cleanest path for standing up an isolated workhorse lane outside
 the old Onyx/WSL tangle.
@@ -104,7 +104,7 @@ These are the most important long-term assets.
 Back up:
 
 - `L:\AI-Stack\`
-- `C:\Users\larry\Documents\Troubleshoot\`
+- `$TROUBLESHOOT_ROOT\`
   - especially:
     - `NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md`
     - `LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md`
@@ -114,14 +114,14 @@ Back up:
 
 Back up:
 
-- `C:\Users\larry\.hermes\hermes-agent\`
-- `C:\Users\larry\.hermes\profiles\`
+- `$USER_HOME\.hermes\hermes-agent\`
+- `$USER_HOME\.hermes\profiles\`
 
 Especially preserve:
 
-- `C:\Users\larry\.hermes\profiles\commander\`
-- `C:\Users\larry\.hermes\profiles\apollo\`
-- `C:\Users\larry\.hermes\profiles\bridge\`
+- `$USER_HOME\.hermes\profiles\commander\`
+- `$USER_HOME\.hermes\profiles\apollo\`
+- `$USER_HOME\.hermes\profiles\bridge\`
 
 Useful evidence inside those:
 
@@ -239,20 +239,20 @@ If you want the most valuable forensic evidence, take copies of these:
 
 ### Research / incident docs
 
-- `C:\Users\larry\Documents\Troubleshoot\checkins\`
-- `C:\Users\larry\Documents\Troubleshoot\NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md`
+- `$TROUBLESHOOT_ROOT\checkins\`
+- `$TROUBLESHOOT_ROOT\NORTHSTAR-STACK-RESEARCH-BRIEF-2026-06-11.md`
 - `F:\TempFiles\AI-Stack-Peer-Review-Terran.md`
 
 ### Commander / Apollo runtime state
 
-- `C:\Users\larry\.hermes\profiles\commander\gateway_state.json`
-- `C:\Users\larry\.hermes\profiles\commander\channel_directory.json`
-- `C:\Users\larry\.hermes\profiles\commander\config.yaml`
-- `C:\Users\larry\.hermes\profiles\commander\gateway-stderr.log`
-- `C:\Users\larry\.hermes\profiles\commander\desktop\sessions.json`
-- `C:\Users\larry\.hermes\profiles\apollo\gateway_state.json`
-- `C:\Users\larry\.hermes\profiles\apollo\channel_directory.json`
-- `C:\Users\larry\.hermes\profiles\apollo\config.yaml`
+- `$USER_HOME\.hermes\profiles\commander\gateway_state.json`
+- `$USER_HOME\.hermes\profiles\commander\channel_directory.json`
+- `$USER_HOME\.hermes\profiles\commander\config.yaml`
+- `$USER_HOME\.hermes\profiles\commander\gateway-stderr.log`
+- `$USER_HOME\.hermes\profiles\commander\desktop\sessions.json`
+- `$USER_HOME\.hermes\profiles\apollo\gateway_state.json`
+- `$USER_HOME\.hermes\profiles\apollo\channel_directory.json`
+- `$USER_HOME\.hermes\profiles\apollo\config.yaml`
 
 ### Project and platform evidence
 
@@ -317,9 +317,9 @@ R:\Hermes-Forge
 1. Copy `L:\Apollo-Brain\` in full.
 2. Copy `L:\WSL\Onyx\` in full.
 3. Copy `L:\AI-Stack\` in full.
-4. Copy `C:\Users\larry\Documents\Troubleshoot\` in full.
-5. Copy `C:\Users\larry\.hermes\profiles\` in full.
-6. Copy `C:\Users\larry\.hermes\hermes-agent\` in full.
+4. Copy `$TROUBLESHOOT_ROOT\` in full.
+5. Copy `$USER_HOME\.hermes\profiles\` in full.
+6. Copy `$USER_HOME\.hermes\hermes-agent\` in full.
 7. Copy `L:\Jarvis\` in full.
 8. Copy `L:\WSL\Command_Line_Reference\` in full.
 9. Copy `L:\WSL\site-studio\` as evidence only.
@@ -336,7 +336,7 @@ R:\Hermes-Forge
 ### Phase 2: Build the inference foundation first
 
 1. Stand up the external `llama.cpp` lane from:
-   - [LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md](C:/Users/larry/Documents/Troubleshoot/LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md)
+   - [LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md](`$TROUBLESHOOT_ROOT/LLAMACPP-EXTERNAL-LANE-RUNBOOK-2026-06-11.md)
 2. Use one fresh port:
    - `8012`
 3. Use one fresh model family:
@@ -483,14 +483,14 @@ Only after that should you add:
 
 Copy these into one backup folder before formatting:
 
-- `C:\Users\larry\Documents\Troubleshoot\`
+- `$TROUBLESHOOT_ROOT\`
 - `L:\AI-Stack\`
 - `L:\Apollo-Brain\`
 - `L:\WSL\Onyx\`
 - `L:\WSL\Command_Line_Reference\`
 - `L:\Jarvis\`
-- `C:\Users\larry\.hermes\profiles\`
-- `C:\Users\larry\.hermes\hermes-agent\`
+- `$USER_HOME\.hermes\profiles\`
+- `$USER_HOME\.hermes\hermes-agent\`
 - `F:\TempFiles\AI-Stack-Peer-Review-Terran.md`
 
 That set gives you:
@@ -520,3 +520,5 @@ If you want, I can next produce:
 1. a shorter “backup checklist” version of this,
 2. a literal folder-by-folder copy checklist,
 3. or a phase-by-phase rebuild operator runbook with commands.
+
+

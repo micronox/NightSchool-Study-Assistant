@@ -71,7 +71,7 @@
 ### Saved note
 
 - Prior related artifact:
-  - [2026-06-21-042300-cuda-vet-and-blueprint-review.md](C:/Users/larry/Documents/Troubleshoot/full_context/2026-06-21-042300-cuda-vet-and-blueprint-review.md)
+  - [2026-06-21-042300-cuda-vet-and-blueprint-review.md](`$TROUBLESHOOT_ROOT/full_context/2026-06-21-042300-cuda-vet-and-blueprint-review.md)
 
 ## 3. Architecture blueprint / Nimbalyst / Headroom / Ponytail
 
@@ -87,7 +87,7 @@
 
 - Headroom was not installed.
 - A dedicated vetting document was produced under:
-  - `L:\WSL_Projects_Folder\Architecture_Defense\headroom_install_vetting.md`
+  - `$PROJECTS_ROOT\Architecture_Defense\headroom_install_vetting.md`
 - Review conclusion from saved evidence:
   - native Windows path should be treated as blocked for now
   - WSL path is conditionally viable
@@ -109,7 +109,7 @@
 
 ### Review note on saved artifact paths
 
-- The preinstall note and backup artifacts do exist in `L:\WSL_Projects_Folder\Architecture_Defense\...`
+- The preinstall note and backup artifacts do exist in `$PROJECTS_ROOT\Architecture_Defense\...`
 - But the saved filenames use a Windows-safe substituted colon glyph in timestamps rather than a literal `:`
 - Future notes should prefer a filesystem-safe timestamp format like:
   - `YYYY-MM-DDTHHMMZ`
@@ -297,6 +297,8 @@ Recommended direction given back:
 
 ## 10. Related artifacts
 
-- [2026-06-21-041207-hermes-full-context.md](C:/Users/larry/Documents/Troubleshoot/full_context/2026-06-21-041207-hermes-full-context.md)
-- [2026-06-21-042300-cuda-vet-and-blueprint-review.md](C:/Users/larry/Documents/Troubleshoot/full_context/2026-06-21-042300-cuda-vet-and-blueprint-review.md)
+- [2026-06-21-041207-hermes-full-context.md](`$TROUBLESHOOT_ROOT/full_context/2026-06-21-041207-hermes-full-context.md)
+- [2026-06-21-042300-cuda-vet-and-blueprint-review.md](`$TROUBLESHOOT_ROOT/full_context/2026-06-21-042300-cuda-vet-and-blueprint-review.md)
+
+
 

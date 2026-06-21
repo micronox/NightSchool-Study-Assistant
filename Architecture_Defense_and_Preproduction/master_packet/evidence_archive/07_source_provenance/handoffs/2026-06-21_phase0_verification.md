@@ -7,7 +7,7 @@
 ---
 
 ## 1. .tools/ cleanup
-Command run: `rm -rf .tools/` (executed by Larry in WSL terminal)
+Command run: `rm -rf .tools/` (executed by operator in WSL terminal)
 Confirmed via Desktop Commander list_directory: `.tools/` absent from Prototype_workingFiles ✓
 
 ---
@@ -30,12 +30,12 @@ Method: WSL filesystem inspection via Desktop Commander — no modifications mad
 |---|---|
 | App name | Hermes Desktop |
 | Version | 0.5.6 (installer: `hermes-desktop-0.5.6-setup.exe`) |
-| Config root | `C:\Users\larry\AppData\Roaming\Hermes\` |
-| Connection file | `C:\Users\larry\AppData\Roaming\Hermes\connection.json` |
+| Config root | `$APPDATA_ROAMING_ROOT\Hermes\` |
+| Connection file | `$APPDATA_ROAMING_ROOT\Hermes\connection.json` |
 | Connection mode | `local` |
 | Local endpoint | `http://localhost:9119` (auth: oauth) |
-| Updater location | `C:\Users\larry\AppData\Local\hermes-desktop-updater\` |
-| Setup cache | `C:\Users\larry\AppData\Local\com.nousresearch.hermes.setup\` |
+| Updater location | `$APPDATA_LOCAL_ROOT\hermes-desktop-updater\` |
+| Setup cache | `$APPDATA_LOCAL_ROOT\com.nousresearch.hermes.setup\` |
 | WSL PATH | Not in WSL PATH (Windows desktop app, not a WSL binary) |
 
 **connection.json contents (verbatim):**
@@ -52,7 +52,7 @@ Method: WSL filesystem inspection via Desktop Commander — no modifications mad
 
 Read-only confirmed — no modifications made: ✓
 
-**Lane F baseline recorded:** NightSchool must not write to `C:\Users\larry\AppData\Roaming\Hermes\` or share the port 9119 endpoint. Any NightSchool config that points to port 9119 is a cross-contamination flag.
+**Lane F baseline recorded:** NightSchool must not write to `$APPDATA_ROAMING_ROOT\Hermes\` or share the port 9119 endpoint. Any NightSchool config that points to port 9119 is a cross-contamination flag.
 
 ---
 
@@ -124,3 +124,5 @@ Status: Already present from pre-pass setup. Confirmed in directory listing. ✓
 **Phase 0 evidence complete — SAFE TO PROCEED TO PHASE 1**
 
 One PRD update required before Phase 1 opens: correct `qwen3.6:latest` references to `qwen3.6:35b-a3b` throughout.
+
+

@@ -9,7 +9,7 @@
 ## Disk State Summary (what actually exists right now)
 
 ```
-L:\WSL_Projects_Folder\
+`$PROJECTS_ROOT\
 ├── Architecture_Defense\          ← previous session's headroom/ponytail work
 │   ├── files.zip
 │   ├── headroom_install_vetting.md
@@ -48,7 +48,7 @@ The Revision Log in the master PRD needs a new row added for this rename — not
 ### 1. BLOCKER — "Primary Hermes install" doesn't exist on the mounted drive
 
 **Where:** PRD §1, §2.1, Phase 0 card 2; Handoff debrief §2 items 2 and 3  
-**Problem:** Phase 0 requires baselining the primary/worker Hermes install for drift-check purposes. No Hermes install exists anywhere under `L:\WSL_Projects_Folder\`. Either:
+**Problem:** Phase 0 requires baselining the primary/worker Hermes install for drift-check purposes. No Hermes install exists anywhere under `$PROJECTS_ROOT\`. Either:
   - (a) Your primary Hermes lives somewhere else entirely (different drive, Windows user profile, WSL home directory), or
   - (b) Hermes hasn't been installed yet at all, and this is a greenfield build
 
@@ -175,3 +175,5 @@ Despite the gaps above, the following is solid and unblocked:
 - Phase 0 card 2 (primary Hermes baseline) needs your answer on whether a prior install exists
 
 WSL mount path is confirmed as `/mnt/l/` equivalent — the folder is accessible at the paths shown in disk state summary above.
+
+

@@ -2,10 +2,10 @@
 # For Codex vetting. Do not implement until Codex approves.
 **Date:** 2026-06-21
 **Author:** Claude (Cowork)
-**Status:** DRAFT v3 — CK-Q3 and CK-Q4 answered by Larry; remaining questions (CK-Q1, CK-Q2, CK-Q5) for Codex
+**Status:** DRAFT v3 — CK-Q3 and CK-Q4 answered by operator; remaining questions (CK-Q1, CK-Q2, CK-Q5) for Codex
 **Context:** NightSchool Phase 1A complete. Kopia v0.23.1 installed locally.
-**Repository:** `E:\KopiaRepo` (confirmed by Larry 2026-06-21)
-**NAS migration:** deferred — `E:\KopiaRepo` is the working repository for the full build.
+**Repository:** `$KOPIA_REPO` (confirmed by operator 2026-06-21)
+**NAS migration:** deferred — `$KOPIA_REPO` is the working repository for the full build.
 
 ---
 
@@ -15,19 +15,19 @@ Kopia is currently configured with two snapshot sources:
 
 | Source | Size | Last snapshot | Schedule |
 |---|---|---|---|
-| `C:\Users\larry` | 46 GB ⚠ | 5 hours ago | None configured |
+| `$USER_HOME` | 46 GB ⚠ | 5 hours ago | None configured |
 | `L:\` | 32.3 GB | 1 hour ago | Every ~12 hours |
 
 This creates two Lane F risks:
 
-**Risk 1 — `C:\Users\larry` snapshot contains primary Hermes state.**
-`C:\Users\larry\AppData\Roaming\Hermes\` and `C:\Users\larry\.hermes\` both live under `C:\Users\larry`. A snapshot of this root captures the primary Hermes profile, connection config, backend venv, and all agent state. If a NightSchool session ever writes into `Hermes-NightSchool\` or `.hermes-nightschool\` (also under `C:\Users\larry`), those paths are in the same snapshot tree — meaning the backup does not distinguish between primary-Hermes writes and NightSchool writes. A restore from this snapshot could silently overwrite primary Hermes state with NightSchool-era state.
+**Risk 1 — `$USER_HOME` snapshot contains primary Hermes state.**
+`$APPDATA_ROAMING_ROOT\Hermes\` and `$USER_HOME\.hermes\` both live under `$USER_HOME`. A snapshot of this root captures the primary Hermes profile, connection config, backend venv, and all agent state. If a NightSchool session ever writes into `Hermes-NightSchool\` or `.hermes-nightschool\` (also under `$USER_HOME`), those paths are in the same snapshot tree — meaning the backup does not distinguish between primary-Hermes writes and NightSchool writes. A restore from this snapshot could silently overwrite primary Hermes state with NightSchool-era state.
 
-**Risk 2 — `C:\Users\larry` snapshot has no policy and is 5 hours stale.**
+**Risk 2 — `$USER_HOME` snapshot has no policy and is 5 hours stale.**
 The warning flag (⚠) in the UI suggests a policy/schedule issue. Without a defined retention policy, this snapshot may accumulate unbounded or get pruned unpredictably. More importantly: no Lane F boundaries are enforced at the snapshot level.
 
 **Risk 3 — `L:\` snapshot includes NightSchool build artifacts alongside other L:\ content.**
-`L:\WSL_Projects_Folder\Nightschool_Study\` is under `L:\`. The current broad `L:\` snapshot captures everything on the drive, with no per-project boundary or tag. When NightSchool is eventually delivered and the hierarchy is rebuilt, this single-root snapshot will be insufficient.
+`$PROJECTS_ROOT\Nightschool_Study\` is under `L:\`. The current broad `L:\` snapshot captures everything on the drive, with no per-project boundary or tag. When NightSchool is eventually delivered and the hierarchy is rebuilt, this single-root snapshot will be insufficient.
 
 ---
 
@@ -35,7 +35,7 @@ The warning flag (⚠) in the UI suggests a policy/schedule issue. Without a def
 
 1. **Snapshot boundaries must mirror Lane F path boundaries.** The same no-touch zones that Lane F enforces at runtime must be enforced at the backup level. Primary Hermes paths must never appear in a NightSchool-tagged snapshot as writable targets.
 
-2. **Split by ownership, not just by drive.** The current split (`C:\Users\larry` vs `L:\`) is a filesystem split, not an ownership split. The right split is: Primary Hermes state | NightSchool build artifacts | Everything else.
+2. **Split by ownership, not just by drive.** The current split (`$USER_HOME` vs `L:\`) is a filesystem split, not an ownership split. The right split is: Primary Hermes state | NightSchool build artifacts | Everything else.
 
 3. **Exclusions are defensive, inclusions are affirmative.** Snapshot policies should affirmatively include only what they own. Exclude everything outside the ownership boundary rather than relying on the other snapshot to catch it.
 
@@ -47,13 +47,13 @@ The warning flag (⚠) in the UI suggests a policy/schedule issue. Without a def
 
 ## Confirmed Physical Architecture
 
-**Repository:** `E:\KopiaRepo` (confirmed 2026-06-21)
+**Repository:** `$KOPIA_REPO` (confirmed 2026-06-21)
 
 Three-drive layout — each drive has a single, non-overlapping role:
 
 ```
 C:\                          ← OS, user profile, primary Hermes, NightSchool runtime state
-  Users\larry\
+  Users\operator\
     AppData\Roaming\Hermes\          ← primary Hermes userData (snapshot source: Policy C1)
     AppData\Roaming\Hermes-NightSchool\  ← NightSchool userData (snapshot source: Policy B1)
     .hermes\                         ← primary Hermes backend (snapshot source: Policy C2)
@@ -67,9 +67,9 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
   KopiaRepo\                         ← all snapshot data, dedup blocks, manifests live here
 ```
 
-**Key property:** `E:\KopiaRepo` is on a separate physical drive from both source drives (`C:\` and `L:\`). A drive failure on `C:\` or `L:\` does not destroy the repository. A repository issue on `E:\` does not corrupt live source data. This is the correct physical isolation for a local-first backup architecture.
+**Key property:** `$KOPIA_REPO` is on a separate physical drive from both source drives (`C:\` and `L:\`). A drive failure on `C:\` or `L:\` does not destroy the repository. A repository issue on `E:\` does not corrupt live source data. This is the correct physical isolation for a local-first backup architecture.
 
-**NAS migration path:** when the NAS is added, `E:\KopiaRepo` becomes a secondary repository or is replaced by a remote Kopia repository target. The policy set (A through E) is identical — only the repository connection string changes.
+**NAS migration path:** when the NAS is added, `$KOPIA_REPO` becomes a secondary repository or is replaced by a remote Kopia repository target. The policy set (A through E) is identical — only the repository connection string changes.
 
 ---
 
@@ -80,7 +80,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 | Field | Value |
 |---|---|
-| Snapshot root | `L:\WSL_Projects_Folder\Nightschool_Study\` |
+| Snapshot root | `$PROJECTS_ROOT\Nightschool_Study\` |
 | Policy name | `nightschool-build` |
 | Schedule | Every 2 hours during active build sessions; daily otherwise |
 | Retention | Keep: 24 hourly, 7 daily, 4 weekly |
@@ -99,7 +99,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 | Field | Value |
 |---|---|
-| Snapshot root | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\` |
+| Snapshot root | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\` |
 | Policy name | `nightschool-hermes-userdata` |
 | Schedule | After each NightSchool session (manual trigger or on session-close hook) |
 | Retention | Keep: 10 snapshots (rolling) |
@@ -110,7 +110,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 | Field | Value |
 |---|---|
-| Snapshot root | `C:\Users\larry\.hermes-nightschool\` |
+| Snapshot root | `$USER_HOME\.hermes-nightschool\` |
 | Policy name | `nightschool-hermes-home` |
 | Schedule | After each NightSchool session |
 | Retention | Keep: 10 snapshots (rolling) |
@@ -126,7 +126,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 | Field | Value |
 |---|---|
-| Snapshot root | `C:\Users\larry\AppData\Roaming\Hermes\` |
+| Snapshot root | `$APPDATA_ROAMING_ROOT\Hermes\` |
 | Policy name | `primary-hermes-userdata-baseline` |
 | Schedule | Manual only — triggered at the start of each NightSchool session, before anything else runs |
 | Retention | Keep: last 30 snapshots (rolling) — these are the Lane F evidence chain |
@@ -137,7 +137,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 | Field | Value |
 |---|---|
-| Snapshot root | `C:\Users\larry\.hermes\` |
+| Snapshot root | `$USER_HOME\.hermes\` |
 | Policy name | `primary-hermes-home-baseline` |
 | Schedule | Manual only — same cadence as above |
 | Retention | Keep: last 30 snapshots (rolling) |
@@ -148,9 +148,9 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 ---
 
-### Policy D — What to do with the current `C:\Users\larry` broad snapshot
+### Policy D — What to do with the current `$USER_HOME` broad snapshot
 
-**Recommendation:** retire it as a NightSchool policy. Keep it if Larry uses it for general user-profile backup purposes unrelated to NightSchool. But it must not be the mechanism for any NightSchool Lane F check, because its scope is too broad to distinguish primary Hermes state from NightSchool state.
+**Recommendation:** retire it as a NightSchool policy. Keep it if operator uses it for general user-profile backup purposes unrelated to NightSchool. But it must not be the mechanism for any NightSchool Lane F check, because its scope is too broad to distinguish primary Hermes state from NightSchool state.
 
 **If retained for general backup purposes:**
 - Add explicit exclusions to prevent it from being confused with NightSchool policies:
@@ -161,7 +161,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 
 **If retired:**
 - Replace with Policies B and C above for the NightSchool-relevant paths
-- General `C:\Users\larry` backup is out of NightSchool scope — Larry's call whether to keep it
+- General `$USER_HOME` backup is out of NightSchool scope — operator's call whether to keep it
 
 ---
 
@@ -184,7 +184,7 @@ E:\                          ← Kopia repository ONLY — never a snapshot sour
 Add to `isolation_manifest.md`:
 
 > **T8 — Kopia snapshot boundaries must mirror Lane F path boundaries.**
-> NightSchool Kopia policies (A and B) must not include `C:\Users\larry\AppData\Roaming\Hermes\` or `C:\Users\larry\.hermes\` in their snapshot roots or via parent-directory inclusion.
+> NightSchool Kopia policies (A and B) must not include `$APPDATA_ROAMING_ROOT\Hermes\` or `$USER_HOME\.hermes\` in their snapshot roots or via parent-directory inclusion.
 > Primary baseline policies (C) are read-only reference snapshots — they must not be used as restore targets during a NightSchool session.
 > Verified at: policy creation time + after any Kopia policy change.
 
@@ -209,11 +209,11 @@ This makes the Lane F drift check **evidence-backed by snapshot timestamps**, no
 
 ## Open Questions for Codex
 
-*CK-Q3 (⚠ warning) and CK-Q4 (repository location) answered by Larry. See detail sections below and Confirmed Physical Architecture above. Three questions remain for Codex: CK-Q1, CK-Q2, CK-Q5.*
+*CK-Q3 (⚠ warning) and CK-Q4 (repository location) answered by operator. See detail sections below and Confirmed Physical Architecture above. Three questions remain for Codex: CK-Q1, CK-Q2, CK-Q5.*
 
 ### CK-Q1 — Snapshot root overlap: does Kopia handle overlapping roots safely?
 
-Policy C snapshots `C:\Users\larry\AppData\Roaming\Hermes\`. The existing broad snapshot snapshots `C:\Users\larry\`. If both policies run against the same local repository, Kopia will deduplicate content at the block level — but does having an overlapping root cause any policy conflict, restore ambiguity, or unexpected include/exclude inheritance?
+Policy C snapshots `$APPDATA_ROAMING_ROOT\Hermes\`. The existing broad snapshot snapshots `$USER_HOME\`. If both policies run against the same local repository, Kopia will deduplicate content at the block level — but does having an overlapping root cause any policy conflict, restore ambiguity, or unexpected include/exclude inheritance?
 
 **Request:** Codex to confirm whether Kopia's policy inheritance model causes any child-path policy to inherit parent-path policy settings, and whether this creates any Lane F risk.
 
@@ -221,15 +221,15 @@ Policy C snapshots `C:\Users\larry\AppData\Roaming\Hermes\`. The existing broad 
 
 ### CK-Q2 — Policy B restore safety: can a NightSchool snapshot restore touch primary Hermes paths?
 
-If Policy B (`nightschool-hermes-userdata`) is restored via `kopia restore` into `C:\Users\larry\AppData\Roaming\Hermes-NightSchool\`, does Kopia's restore path have any mechanism that could accidentally write to `C:\Users\larry\AppData\Roaming\Hermes\`?
+If Policy B (`nightschool-hermes-userdata`) is restored via `kopia restore` into `$APPDATA_ROAMING_ROOT\Hermes-NightSchool\`, does Kopia's restore path have any mechanism that could accidentally write to `$APPDATA_ROAMING_ROOT\Hermes\`?
 
 **Request:** Codex to confirm restore is path-scoped and cannot escape the snapshot root. If there are any Kopia restore flags or behaviors that could cause path confusion (e.g., `--override-username`, `--override-hostname`), flag them.
 
 ---
 
-### CK-Q3 — The `C:\Users\larry` ⚠ warning ✓ ANSWERED
+### CK-Q3 — The `$USER_HOME` ⚠ warning ✓ ANSWERED
 
-**Answer (Larry, 2026-06-21):** 475 file-lock errors. All errors are open-file LOCK files held by running applications at snapshot time:
+**Answer (operator, 2026-06-21):** 475 file-lock errors. All errors are open-file LOCK files held by running applications at snapshot time:
 
 - `AppData\Local\EpicGamesLauncher\Saved\webcache_4430\LOCK` — Epic Games Launcher webcache
 - `AppData\Local\EpicGamesLauncher\Saved\webcache_4430\Local Storage\leveldb\LOCK`
@@ -243,7 +243,7 @@ If Policy B (`nightschool-hermes-userdata`) is restored via `kopia restore` into
 
 **Option CK-Q3a (recommended): add exclusions to Policy D to skip known lock-file paths.**
 
-Add these exclusions to the `C:\Users\larry` policy:
+Add these exclusions to the `$USER_HOME` policy:
 ```
 AppData/Local/EpicGamesLauncher/Saved/webcache_*/
 AppData/Local/Riot Games/Riot Client/Crashes/
@@ -251,9 +251,9 @@ AppData/Local/Riot Games/Riot Client/Logs/
 ```
 This eliminates the 475 errors without losing any meaningful backup data. Lock files and crash dumps are not restore-worthy content.
 
-**Option CK-Q3b: accept the errors as noise.** The `C:\Users\larry` snapshot is kept for general user-profile backup (out of NightSchool scope). 475 lock-file errors are cosmetic — the snapshot is functionally complete. Leave the policy as-is and treat the ⚠ as expected behaviour when game clients are running.
+**Option CK-Q3b: accept the errors as noise.** The `$USER_HOME` snapshot is kept for general user-profile backup (out of NightSchool scope). 475 lock-file errors are cosmetic — the snapshot is functionally complete. Leave the policy as-is and treat the ⚠ as expected behaviour when game clients are running.
 
-**Impact on NightSchool Lane F:** none either way. The `C:\Users\larry` broad snapshot is Policy D — out of NightSchool scope. Its errors do not affect Policies A, B, or C.
+**Impact on NightSchool Lane F:** none either way. The `$USER_HOME` broad snapshot is Policy D — out of NightSchool scope. Its errors do not affect Policies A, B, or C.
 
 **No action needed on CK-Q3 before NightSchool policies are created.** Flagging for Codex to choose Option a or b as a housekeeping decision.
 
@@ -261,7 +261,7 @@ This eliminates the 475 errors without losing any meaningful backup data. Lock f
 
 ### CK-Q4 — Kopia repository location ✓ ANSWERED
 
-**Answer (Larry, 2026-06-21):** `E:\KopiaRepo`
+**Answer (operator, 2026-06-21):** `$KOPIA_REPO`
 
 **Analysis:** This is an excellent layout. Three drives, three roles:
 
@@ -269,7 +269,7 @@ This eliminates the 475 errors without losing any meaningful backup data. Lock f
 |---|---|---|
 | `C:\` | OS + user profile + primary Hermes install | **Snapshot source only** — never the repository |
 | `L:\` | NightSchool build artifacts, WSL projects | **Snapshot source only** |
-| `E:\` | Kopia repository (`E:\KopiaRepo`) | **Repository only** — never a snapshot source |
+| `E:\` | Kopia repository (`$KOPIA_REPO`) | **Repository only** — never a snapshot source |
 
 This means a failure or corruption event on `C:\` or `L:\` does not affect the repository, and a repository integrity issue on `E:\` does not affect the live source data. The drive separation is the right physical isolation architecture.
 
@@ -298,13 +298,13 @@ These are the steps, in order, once Codex vets and approves this spec. Nothing b
 1. **Codex approves this spec** — specifically CK-Q1, CK-Q2, CK-Q5, and chooses CK-Q3 Option a or b.
 2. **Create Policy C** (primary Hermes baseline snapshots: `Hermes\` and `.hermes\`) — manual trigger only, reference snapshots. Do this first so the Lane F evidence chain starts before any NightSchool work proceeds.
 3. **Trigger Policy C manually** — first baseline snapshot. Timestamps the primary Hermes state as of today.
-4. **Create Policy A** (`L:\WSL_Projects_Folder\Nightschool_Study\`) — NightSchool build artifacts. Schedule: every 2 hours active / daily idle.
-5. **Create Policy B1** (`C:\Users\larry\AppData\Roaming\Hermes-NightSchool\`) and **Policy B2** (`.hermes-nightschool\`) — NightSchool runtime state. Dirs may not exist yet on first policy creation; Kopia will snapshot them once Phase 1A creates them.
-6. **Update `isolation_manifest.md`** — add T8 tripwire, Kopia policy table, and `E:\KopiaRepo` as confirmed repository.
+4. **Create Policy A** (`$PROJECTS_ROOT\Nightschool_Study\`) — NightSchool build artifacts. Schedule: every 2 hours active / daily idle.
+5. **Create Policy B1** (`$APPDATA_ROAMING_ROOT\Hermes-NightSchool\`) and **Policy B2** (`.hermes-nightschool\`) — NightSchool runtime state. Dirs may not exist yet on first policy creation; Kopia will snapshot them once Phase 1A creates them.
+6. **Update `isolation_manifest.md`** — add T8 tripwire, Kopia policy table, and `$KOPIA_REPO` as confirmed repository.
 7. **Update `launch_hermes_nightschool_safe_reuse.ps1`** — add pre-launch Policy C snapshot trigger using CK-Q5 CLI answer. Makes baseline snapshot automatic on every NightSchool session open.
-8. **Address Policy D** (`C:\Users\larry` broad snapshot) — apply Option CK-Q3a exclusions (Epic/Riot lock paths) if Codex selects a. No NightSchool action needed either way.
+8. **Address Policy D** (`$USER_HOME` broad snapshot) — apply Option CK-Q3a exclusions (Epic/Riot lock paths) if Codex selects a. No NightSchool action needed either way.
 9. **Final Lane F sign-off** — confirm all policies in place, first Policy A and B snapshots clean, T8 tripwire verified. Write Phase 1A Kopia verification card.
-10. **NAS migration** — deferred. When NAS is available: add as a second Kopia repository target, replicate existing policy set, retire or keep `E:\KopiaRepo` as local cache.
+10. **NAS migration** — deferred. When NAS is available: add as a second Kopia repository target, replicate existing policy set, retire or keep `$KOPIA_REPO` as local cache.
 
 ---
 
@@ -323,10 +323,12 @@ These are the steps, in order, once Codex vets and approves this spec. Nothing b
 
 | Policy | Root | Purpose | Schedule | Lane F role |
 |---|---|---|---|---|
-| A — nightschool-build | `L:\WSL_Projects_Folder\Nightschool_Study\` | NightSchool build artifacts | Every 2h active / daily | Primary VCS for build |
+| A — nightschool-build | `$PROJECTS_ROOT\Nightschool_Study\` | NightSchool build artifacts | Every 2h active / daily | Primary VCS for build |
 | B1 — nightschool-hermes-userdata | `C:\...\Hermes-NightSchool\` | NightSchool Electron state | Post-session | Roll-back NightSchool GUI state |
-| B2 — nightschool-hermes-home | `C:\Users\larry\.hermes-nightschool\` | NightSchool backend state | Post-session | Roll-back NightSchool agent state |
+| B2 — nightschool-hermes-home | `$USER_HOME\.hermes-nightschool\` | NightSchool backend state | Post-session | Roll-back NightSchool agent state |
 | C1 — primary-hermes-userdata-baseline | `C:\...\Hermes\` | Primary Hermes reference | Pre-launch (manual) | Lane F drift evidence chain |
-| C2 — primary-hermes-home-baseline | `C:\Users\larry\.hermes\` | Primary backend reference | Pre-launch (manual) | Lane F drift evidence chain |
-| D — `C:\Users\larry` broad | `C:\Users\larry` | General user backup | TBD | Out of NightSchool scope — retire or add exclusions |
+| C2 — primary-hermes-home-baseline | `$USER_HOME\.hermes\` | Primary backend reference | Pre-launch (manual) | Lane F drift evidence chain |
+| D — `$USER_HOME` broad | `$USER_HOME` | General user backup | TBD | Out of NightSchool scope — retire or add exclusions |
 | E — `L:\` broad | `L:\` | Safety net during build | Every ~12h (existing) | Keep as-is; retire after NAS migration |
+
+

@@ -2,7 +2,7 @@
 
 - Date: 2026-06-11
 - Author: Northstar
-- Scope: Local Hermes / Apollo / Anvil / Onyx / Jarvis stack on `L:\WSL`, `L:\Jarvis`, `L:\Apollo-Brain`, and local Hermes profile state under `C:\Users\larry\.hermes`
+- Scope: Local Hermes / Apollo / Anvil / Onyx / Jarvis stack on `L:\WSL`, `L:\Jarvis`, `L:\Apollo-Brain`, and local Hermes profile state under `$USER_HOME\.hermes`
 - Purpose: Summarize the current technical stack, intended framework, observed failures, evidence-backed diagnosis, and the decision point between salvage and clean rebuild
 
 ## Executive Summary
@@ -68,7 +68,7 @@ Evidence was gathered from:
 - `site-studio` source and filesystem state
 - newly written inventory and cleanup tooling under `L:\AI-Stack`
 - repeated timestamped check-ins stored in:
-  - `C:\Users\larry\Documents\Troubleshoot\checkins`
+  - `$TROUBLESHOOT_ROOT\checkins`
 
 This was a direct system audit, not a theoretical architecture review.
 
@@ -110,9 +110,9 @@ This part of the system is conceptually strong and relatively coherent.
 
 Primary locations:
 
-- `C:\Users\larry\.hermes\hermes-agent`
-- `C:\Users\larry\.hermes\profiles\commander`
-- `C:\Users\larry\.hermes\profiles\apollo`
+- `$USER_HOME\.hermes\hermes-agent`
+- `$USER_HOME\.hermes\profiles\commander`
+- `$USER_HOME\.hermes\profiles\apollo`
 
 Observed characteristics:
 
@@ -498,8 +498,8 @@ Back up these categories first:
 
 ### Preserve as Evidence, Not Live Runtime
 
-- `C:\Users\larry\.hermes\profiles\commander`
-- `C:\Users\larry\.hermes\profiles\apollo`
+- `$USER_HOME\.hermes\profiles\commander`
+- `$USER_HOME\.hermes\profiles\apollo`
 - `L:\WSL\site-studio`
 - old scheduled task definitions
 - old runtime bridge logs
@@ -776,7 +776,7 @@ For isolated rebuild work:
 
 ```mermaid
 flowchart TB
-  Larry["Larry"] --> NS["Northstar authority"]
+  operator["operator"] --> NS["Northstar authority"]
   NS --> Onyx["Onyx protected truth layer"]
 
   subgraph Captains["Captain / Role Layer"]
@@ -809,7 +809,7 @@ flowchart TB
     MR["Onyx MemoryRecall"]
     AR["Onyx agent-registry"]
     AB["L:/Apollo-Brain"]
-    HP["C:/Users/larry/.hermes/profiles/*"]
+    HP["`$USER_HOME/.hermes/profiles/*"]
   end
 
   Desk --> CMD
@@ -836,7 +836,7 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-  Larry["Larry"] --> NS["Northstar"]
+  operator["operator"] --> NS["Northstar"]
   NS --> Canon["Onyx canon / protected truth"]
   NS --> Plan["rebuild decisions / validations"]
 
@@ -924,7 +924,7 @@ This is the recommended temporary rebuild lane outside the broken Onyx runtime.
 
 ```mermaid
 flowchart LR
-  Larry["Larry"] --> Hermes2["Fresh Hermes install"]
+  operator["operator"] --> Hermes2["Fresh Hermes install"]
   Hermes2 --> API["OpenAI-compatible endpoint"]
   API --> LServer["llama-server :8012"]
   LServer --> Model["DeepSeek v4 Pro or Qwen GGUF"]
@@ -966,7 +966,7 @@ R:\Hermes-Forge
 
 ## Appendix F: What To Avoid During Rebuild
 
-- Do not point a fresh Hermes install at `C:\Users\larry\.hermes\profiles\commander`
+- Do not point a fresh Hermes install at `$USER_HOME\.hermes\profiles\commander`
   or `apollo`.
 - Do not reuse the current Onyx Telegram bot polling surfaces during testing.
 - Do not bind new inference services to old stack ports.
@@ -977,3 +977,5 @@ R:\Hermes-Forge
   store is verified.
 - Do not let Docker, WSL, Ollama, and Hermes all be part of the same first A/B
   test. Change one variable at a time.
+
+

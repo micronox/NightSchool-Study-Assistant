@@ -15,7 +15,7 @@
 
 | Name | Version | Purpose | Install scope | Added by | Date |
 |---|---|---|---|---|---|
-| Kopia CLI | 0.23.1 | Lane F snapshot evidence, pre-launch primary Hermes baselines, NightSchool runtime rollback points | Windows local install at `C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe`; repository at `E:\KopiaRepo` | Larry + Codex review | 2026-06-21 |
+| Kopia CLI | 0.23.1 | Lane F snapshot evidence, pre-launch primary Hermes baselines, NightSchool runtime rollback points | Windows local install at `$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe`; repository at `$KOPIA_REPO` | operator + Codex review | 2026-06-21 |
 
 **Verification status (2026-06-21, confirmed by Codex):**
 - `pyenv --version` → `pyenv 2.7.2` ✓
@@ -70,3 +70,5 @@ Add this preamble to any automation scripts that invoke Node. Lane F should flag
 ---
 *Lane F policy: run a diff of this file at the start of every session that touches packages. 
 Any package present in the environment but not listed here is a Lane F flag.*
+
+

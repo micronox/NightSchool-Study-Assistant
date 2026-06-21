@@ -2,7 +2,7 @@
 
 **Status:** Proposed — awaiting Codex review (Q1–Q5 must be answered before Accepted)
 **Date:** 2026-06-21
-**Deciders:** Larry (owner), Codex (Lane F architecture review)
+**Deciders:** operator (owner), Codex (Lane F architecture review)
 **Authored by:** Claude (Cowork)
 **Linked brief:** `handoffs/2026-06-21_phase1_codex_architecture_brief.md`
 
@@ -30,10 +30,10 @@ Two environment variables are set before launching `Hermes.exe`:
 
 | Env var | NightSchool value | Controls |
 |---|---|---|
-| `HERMES_DESKTOP_USER_DATA_DIR` | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool` | Electron `userData` path — connection.json, active-profile.json, all GUI state |
-| `HERMES_HOME` | `C:\Users\larry\.hermes-nightschool` | Python agent backend root — venv, profiles, logs, bootstrap cache |
+| `HERMES_DESKTOP_USER_DATA_DIR` | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool` | Electron `userData` path — connection.json, active-profile.json, all GUI state |
+| `HERMES_HOME` | `$USER_HOME\.hermes-nightschool` | Python agent backend root — venv, profiles, logs, bootstrap cache |
 
-The existing binary at `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` is reused (read-only). The launch script (`scripts/launch_hermes_nightschool.ps1`) sets both vars and includes a Lane F pre-launch guard that hard-blocks if either var matches the primary paths.
+The existing binary at `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` is reused (read-only). The launch script (`scripts/launch_hermes_nightschool.ps1`) sets both vars and includes a Lane F pre-launch guard that hard-blocks if either var matches the primary paths.
 
 ---
 
@@ -114,7 +114,7 @@ These map directly to Q1–Q5 in the Codex brief. ADR cannot be accepted until a
 
 **Shared binary risk:** Both profiles run identical code. This is a feature, not a risk — version drift (the main risk of Option B) is impossible. If Hermes auto-updates, both profiles update together; the Lane F drift check should verify binary hash parity after any update.
 
-**Bootstrap footprint:** Q2 and Q3 together determine whether first NightSchool launch triggers a full agent re-clone or can reuse the existing agent binary. If re-clone is required, the first launch has a one-time cost (network, disk, time) but is not an architectural problem — it's an operational note for Larry.
+**Bootstrap footprint:** Q2 and Q3 together determine whether first NightSchool launch triggers a full agent re-clone or can reuse the existing agent binary. If re-clone is required, the first launch has a one-time cost (network, disk, time) but is not an architectural problem — it's an operational note for operator.
 
 **Port isolation:** Q1 is architecturally clean if `connection.json` is authoritative for port selection (the working hypothesis). If port is hardcoded, the design needs a different approach for concurrent operation but Option C still works for alternating operation.
 
@@ -144,8 +144,8 @@ These map directly to Q1–Q5 in the Codex brief. ADR cannot be accepted until a
 
 | Tripwire | Check | Failure action |
 |---|---|---|
-| userData path | `HERMES_DESKTOP_USER_DATA_DIR` ≠ `C:\Users\larry\AppData\Roaming\Hermes` | Hard block in launch script |
-| Backend root | `HERMES_HOME` ≠ `C:\Users\larry\.hermes` | Hard block in launch script |
+| userData path | `HERMES_DESKTOP_USER_DATA_DIR` ≠ `$APPDATA_ROAMING_ROOT\Hermes` | Hard block in launch script |
+| Backend root | `HERMES_HOME` ≠ `$USER_HOME\.hermes` | Hard block in launch script |
 | Port isolation | NightSchool `connection.json` must not reference port 9119 | Phase 1 card verification step |
 | Primary unchanged | `Hermes\connection.json` unchanged after NightSchool launch | Lane F post-launch drift check |
 
@@ -161,7 +161,9 @@ These map directly to Q1–Q5 in the Codex brief. ADR cannot be accepted until a
 4. [ ] **[Codex]** Answer Q3 — assess whether agent binary reuse is possible.
 5. [ ] **[Codex]** Answer Q5 — grep for `safeStorage`, assess tripwire completeness.
 6. [ ] **[Codex]** Approve or redline `launch_hermes_nightschool.ps1`.
-7. [ ] **[Claude]** Translate Codex answers into step-by-step instructions for Larry.
-8. [ ] **[Larry]** Run launch script per translated instructions (only after Codex approves).
+7. [ ] **[Claude]** Translate Codex answers into step-by-step instructions for operator.
+8. [ ] **[operator]** Run launch script per translated instructions (only after Codex approves).
 9. [ ] Update ADR status to **Accepted** once Q1–Q5 are answered and launch script is approved.
 10. [ ] Append post-launch evidence (connection.json paths, bootstrap inventory) to ADR as an addendum.
+
+

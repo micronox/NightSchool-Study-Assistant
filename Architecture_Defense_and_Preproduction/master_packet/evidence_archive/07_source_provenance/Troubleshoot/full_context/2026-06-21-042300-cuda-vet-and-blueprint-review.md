@@ -19,7 +19,7 @@ What was verified:
   - `nvcc` present at `/usr/local/cuda/bin/nvcc`
   - `nvcc --version` reports CUDA `13.3.33`
 - A real CUDA smoke test was compiled with `nvcc` and executed successfully
-  - source: `C:\Users\larry\Documents\Troubleshoot\cuda_smoke_test.cu`
+  - source: `$TROUBLESHOOT_ROOT\cuda_smoke_test.cu`
   - result:
     - `device=NVIDIA RTX PRO 6000 Blackwell Workstation Edition compute=12.0 result=42`
 - Hermes local inference still works end to end:
@@ -133,3 +133,5 @@ Recommended updated emphasis:
 The CUDA stack is ready.
 
 The architecture blueprint is still broadly useful, but it is now incomplete until Nimbalyst is added as the visual workspace and operator-control layer.
+
+

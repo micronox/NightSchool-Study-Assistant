@@ -28,7 +28,7 @@
 ### Step 1: Lock backend authority
 
 - Confirm WSL Hermes works end-to-end.
-- Keep all state under `/home/larry/.hermes`.
+- Keep all state under `$WSL_USER_HOME/.hermes`.
 - Keep model endpoints local to WSL when possible.
 - Treat Desktop config as disposable client state.
 
@@ -120,4 +120,6 @@ The first artifacts to produce from this path are:
 - a vault sync skill
 - a client safety skill
 - a simple task board or task file convention
+
+
 

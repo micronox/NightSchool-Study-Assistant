@@ -21,7 +21,7 @@ What is verified:
   - `qwen3-coder:30b`
   - `gemma4:26b`
 - A safety backup of Hermes desktop local storage was created at:
-  - `C:\Users\larry\Documents\Troubleshoot\backups\hermes-localstorage-20260621-032620`
+  - `$TROUBLESHOOT_ROOT\backups\hermes-localstorage-20260621-032620`
 
 What is not yet verified:
 
@@ -73,7 +73,7 @@ Executed:
 - `hermes config set model.default qwen3.6:latest`
 - `hermes config set model.provider custom`
 
-Result in `C:\Users\larry\.hermes\config.yaml`:
+Result in `$USER_HOME\.hermes\config.yaml`:
 
 ```yaml
 model:
@@ -86,11 +86,11 @@ model:
 
 Backed up:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\Local Storage`
+- `$APPDATA_ROAMING_ROOT\Hermes\Local Storage`
 
 To:
 
-- `C:\Users\larry\Documents\Troubleshoot\backups\hermes-localstorage-20260621-032620`
+- `$TROUBLESHOOT_ROOT\backups\hermes-localstorage-20260621-032620`
 
 ### 5. Stopped Hermes desktop processes
 
@@ -105,8 +105,8 @@ At the end of this chat:
 
 Created probe/repair files in the workspace:
 
-- `C:\Users\larry\Documents\Troubleshoot\qwen-localstorage-probe.html`
-- `C:\Users\larry\Documents\Troubleshoot\qwen-localstorage-repair.html`
+- `$TROUBLESHOOT_ROOT\qwen-localstorage-probe.html`
+- `$TROUBLESHOOT_ROOT\qwen-localstorage-repair.html`
 
 Intent:
 
@@ -124,7 +124,7 @@ But this repair is NOT verified as successful.
 
 Searches of:
 
-- `C:\Users\larry\AppData\Roaming\Hermes\Local Storage\leveldb`
+- `$APPDATA_ROAMING_ROOT\Hermes\Local Storage\leveldb`
 
 still showed stale entries like:
 
@@ -231,3 +231,5 @@ Do:
 - preserve the local storage backup
 - preserve the current local-Qwen root config unless deliberately rolling back
 - verify local Ollama response directly before debugging Hermes further
+
+

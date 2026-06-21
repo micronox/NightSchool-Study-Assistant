@@ -80,7 +80,7 @@ Using your criteria (support, maintainability, upgrade safety, etc.):
 **WSL (authoritative backend) – Official pattern**
 
 ```text
-/home/larry/
+`$WSL_USER_HOME/
   .hermes/
     config.yaml
     .env
@@ -155,7 +155,7 @@ L:\Vaults\
 
 Given your 01‑spec’s decision questions, the best practice for **future projects and switching** is:
 
-- **One Hermes runtime in WSL** (`/home/larry/.hermes`).
+- **One Hermes runtime in WSL** (`$WSL_USER_HOME/.hermes`).
 - **One Windows Desktop install**, connected in remote mode.
 - Projects distinguished by:
     - Manifest files in `~/projects/hermes-os/projects/*.yaml`.
@@ -368,4 +368,6 @@ That is the cleanest interpretation that aligns both with your ground truths and
 [^29]: https://hermes-agent.org
 
 [^30]: https://podcasts.apple.com/au/podcast/hermes-agent-os-just-changed-everything/id1851256047?i=1000769506428
+
+
 

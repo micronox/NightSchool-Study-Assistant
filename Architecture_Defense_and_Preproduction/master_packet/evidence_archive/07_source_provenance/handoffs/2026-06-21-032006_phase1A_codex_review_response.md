@@ -15,9 +15,9 @@
 
 1. Use `HERMES_DESKTOP_USER_DATA_DIR` for NightSchool desktop-state isolation.
 2. Use `HERMES_HOME` for NightSchool config/log/profile isolation.
-3. Reuse the existing Hermes agent code root with: `HERMES_DESKTOP_HERMES_ROOT=C:\Users\larry\.hermes\hermes-agent`
+3. Reuse the existing Hermes agent code root with: `HERMES_DESKTOP_HERMES_ROOT=`$USER_HOME\.hermes\hermes-agent`
 4. Require the primary Hermes desktop to be fully closed before NightSchool launch.
-5. Do **not** let NightSchool perform a fresh first-launch bootstrap into `C:\Users\larry\.hermes-nightschool\` yet.
+5. Do **not** let NightSchool perform a fresh first-launch bootstrap into `$USER_HOME\.hermes-nightschool\` yet.
 
 ---
 
@@ -59,10 +59,10 @@ Current desktop uses ephemeral port (`--port 0`). OS assigns at runtime; app wai
 
 | Variable | Approved NightSchool value | Notes |
 |---|---|---|
-| `HERMES_DESKTOP_USER_DATA_DIR` | `C:\Users\larry\AppData\Roaming\Hermes-NightSchool` | Separate Electron state |
-| `HERMES_HOME` | `C:\Users\larry\.hermes-nightschool` | Separate NightSchool data/log/config root |
-| `HERMES_DESKTOP_HERMES_ROOT` | `C:\Users\larry\.hermes\hermes-agent` | Reuse existing agent code/venv — avoid bootstrap |
-| `Hermes.exe` | `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary |
+| `HERMES_DESKTOP_USER_DATA_DIR` | `$APPDATA_ROAMING_ROOT\Hermes-NightSchool` | Separate Electron state |
+| `HERMES_HOME` | `$USER_HOME\.hermes-nightschool` | Separate NightSchool data/log/config root |
+| `HERMES_DESKTOP_HERMES_ROOT` | `$USER_HOME\.hermes\hermes-agent` | Reuse existing agent code/venv — avoid bootstrap |
+| `Hermes.exe` | `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe` | Shared binary |
 
 ## Explicit Non-Goals for Phase 1A
 
@@ -124,3 +124,5 @@ The approved script:
 - shared binary + shared existing agent code root
 - isolated userData + isolated HERMES_HOME
 - explicit Lane F guardrails (7 tripwires)
+
+

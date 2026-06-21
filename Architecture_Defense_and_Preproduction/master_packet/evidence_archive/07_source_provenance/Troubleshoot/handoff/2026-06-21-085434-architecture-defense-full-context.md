@@ -3,16 +3,16 @@
 - Date: 2026-06-21
 - Time: 08:54:34 America/Chicago
 - Scope: NightSchool Phase 1A architecture defense, context shaping, Hermes isolation, and Kopia Lane F review
-- Intended next home: `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\`
+- Intended next home: `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\`
 
 ## Current operating reality
 
 - This work is no longer in troubleshooting mode.
 - The correct project home for ongoing NightSchool work is:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles`
 - Architecture-defense artifacts should now be logged under:
-  - `L:\WSL_Projects_Folder\Architecture_Defense\`
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\`
+  - `$PROJECTS_ROOT\Architecture_Defense\`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\`
 - Timestamped filenames are now the standard:
   - `YYYY-MM-DD-HHMMSS_<slug>`
   - local time basis: America/Chicago / Austin, TX local time
@@ -46,13 +46,13 @@
 ## Approved Phase 1A runtime values
 
 - `HERMES_DESKTOP_USER_DATA_DIR`
-  - `C:\Users\larry\AppData\Roaming\Hermes-NightSchool`
+  - `$APPDATA_ROAMING_ROOT\Hermes-NightSchool`
 - `HERMES_HOME`
-  - `C:\Users\larry\.hermes-nightschool`
+  - `$USER_HOME\.hermes-nightschool`
 - `HERMES_DESKTOP_HERMES_ROOT`
-  - `C:\Users\larry\.hermes\hermes-agent`
+  - `$USER_HOME\.hermes\hermes-agent`
 - shared binary
-  - `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
+  - `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
 
 ## Phase 1A non-negotiable guardrails
 
@@ -64,10 +64,10 @@
 ## Files created for Phase 1A review
 
 - Codex architecture review:
-  - `L:\WSL_Projects_Folder\Architecture_Defense\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
+  - `$PROJECTS_ROOT\Architecture_Defense\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-075947_phase1_codex_architecture_defense_review.md`
 - Safe launcher draft:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1`
 
 ## Safe launcher status
 
@@ -78,19 +78,19 @@
 ## Kopia / Lane F conclusions
 
 - Repository status is confirmed and connected:
-  - repository path: `E:\KopiaRepo`
-  - config file: `C:\Users\larry\AppData\Roaming\kopia\repository.config`
+  - repository path: `$KOPIA_REPO`
+  - config file: `$APPDATA_ROAMING_ROOT\kopia\repository.config`
 - Installed CLI path:
-  - `C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe`
+  - `$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe`
 - `kopia` is now on user PATH and resolves in shell.
 
 ## Claude Kopia spec reviewed
 
 - Source spec:
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_kopia_lane_f_spec.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21_kopia_lane_f_spec.md`
 - Codex addendum answering open questions:
-  - `L:\WSL_Projects_Folder\Architecture_Defense\2026-06-21-081000-kopia-lane-f-codex-answers.md`
-  - `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-081000-kopia-lane-f-codex-answers.md`
+  - `$PROJECTS_ROOT\Architecture_Defense\2026-06-21-081000-kopia-lane-f-codex-answers.md`
+  - `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs\2026-06-21-081000-kopia-lane-f-codex-answers.md`
 
 ## Kopia answers resolved
 
@@ -115,14 +115,14 @@
 - Approved command pattern:
 
 ```powershell
-& "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe" snapshot create --description "Lane F pre-launch baseline: primary Hermes userData" --tags lanef:baseline --tags scope:primary-hermes --tags kind:userdata --json "C:\Users\larry\AppData\Roaming\Hermes"
+& "`$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe" snapshot create --description "Lane F pre-launch baseline: primary Hermes userData" --tags lanef:baseline --tags scope:primary-hermes --tags kind:userdata --json "`$APPDATA_ROAMING_ROOT\Hermes"
 
-& "C:\Users\larry\AppData\Local\Programs\KopiaUI\resources\server\kopia.exe" snapshot create --description "Lane F pre-launch baseline: primary Hermes home" --tags lanef:baseline --tags scope:primary-hermes --tags kind:home --json "C:\Users\larry\.hermes"
+& "`$APPDATA_LOCAL_ROOT\Programs\KopiaUI\resources\server\kopia.exe" snapshot create --description "Lane F pre-launch baseline: primary Hermes home" --tags lanef:baseline --tags scope:primary-hermes --tags kind:home --json "`$USER_HOME\.hermes"
 ```
 
 ## Recommended next move in new chat
 
-1. Resume from `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles`.
+1. Resume from `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles`.
 2. Feed Hermes / Nemotron Super these files in order:
    - `2026-06-21_kopia_lane_f_spec.md`
    - `2026-06-21-081000-kopia-lane-f-codex-answers.md`
@@ -155,4 +155,6 @@
 - Kopia Lane F shape is substantially defined.
 - Kopia CLI is usable now.
 - The next conversation should move onto `L:\...` and continue from the project-side handoff chain rather than Troubleshoot.
+
+
 

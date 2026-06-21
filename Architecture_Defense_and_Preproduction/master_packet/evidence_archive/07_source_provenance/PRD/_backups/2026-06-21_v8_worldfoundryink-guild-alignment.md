@@ -1,9 +1,9 @@
 # NightSchool — Local Hermes Study Companion
 ## PRD, Isolation Architecture, Architecture Defense System, Context Management, and Session-Bounded Execution
 
-**Owner:** Larry
+**Owner:** operator
 **Target hardware:** Local workstation, Blackwell RTX 6000 (full GPU), 96GB RAM, Nous subscription (Nemotron Super + Ultra — primary model lanes)
-**Confirmed dir:** `L:\WSL_Projects_Folder\Nightschool_Study\` — outside `/larry` user scope, contains `Prototype_workingFiles\` and `App_Final_Deliverable\`
+**Confirmed dir:** `$PROJECTS_ROOT\Nightschool_Study\` — outside `/operator` user scope, contains `Prototype_workingFiles\` and `App_Final_Deliverable\`
 **Date:** 2026-06-21 (v3)
 **Status:** Active — pre-architecture-defense pass complete, Phase 0 execution next
 **File location:** `Prototype_workingFiles\PRD\NightSchool_PRD_and_Execution_System.md` (this is always the master — filename never gets a version number appended)
@@ -64,7 +64,7 @@ This revision adds, per your direction:
 Your screenshot confirms the structure. This replaces the v1 assumption of a single `~/hermes-nightschool` root with your actual layout:
 
 ```
-L:\WSL_Projects_Folder\
+`$PROJECTS_ROOT\
 ├── Architecture_Defense\        ← Adjacent planning/audit context. Contains
 │                                   Codex pre-install snapshots and headroom
 │                                   vetting docs. In scope for audit/history/
@@ -86,7 +86,7 @@ L:\WSL_Projects_Folder\
                                     GitHub.
 ```
 
-**Why this matters for isolation:** putting `Nightschool_Study\` under `L:\` rather than under your Windows user profile or your primary Hermes install path is itself the isolation boundary — the primary/worker Hermes lives elsewhere (outside `L:\WSL_Projects_Folder\`) and is treated as an external, read-only reference for Lane F drift checks. Inside WSL, this will mount as something like `/mnt/l/WSL_Projects_Folder/Nightschool_Study/` — confirm the exact WSL mount point in Phase 0 (don't assume `/mnt/l/`; verify it).
+**Why this matters for isolation:** putting `Nightschool_Study\` under `L:\` rather than under your Windows user profile or your primary Hermes install path is itself the isolation boundary — the primary/worker Hermes lives elsewhere (outside `$PROJECTS_ROOT\`) and is treated as an external, read-only reference for Lane F drift checks. Inside WSL, this will mount as something like `/mnt/l/WSL_Projects_Folder/Nightschool_Study/` — confirm the exact WSL mount point in Phase 0 (don't assume `/mnt/l/`; verify it).
 
 **Promotion rule (Prototype → Final):** nothing moves from `Prototype_workingFiles` to `App_Final_Deliverable` without passing a Verification card. This is the same Done-with-evidence discipline as the rest of the system, applied specifically to the one transition that has real consequences (GitHub push). Treat `App_Final_Deliverable` the way you'd treat a release branch — agents propose, controller (you, or a controller-thread agent acting on your sign-off) promotes.
 
@@ -269,7 +269,7 @@ Pulled out explicitly per your request, organized by lane/phase, so a session ne
 You're building a personal multi-agent study/research companion (NightSchool) on top of a local, isolated Hermes install. The build needs to (a) respect a confirmed Prototype/Final folder separation feeding a GitHub push, (b) defend its own architectural boundaries actively rather than just checking them once, (c) be broken into context-appropriately-sized, session-bounded chunks usable by both Codex and Claude, and (d) route inference frontier-first: Nemotron 3 Super as the primary lane, Nemotron 3 Ultra for escalation, and local Ollama → qwen3.6:35b-a3b as fallback/mechanical only — never the silent default.
 
 ### Goals
-1. Stand up an isolated NightSchool Hermes instance rooted at `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\`, zero shared state with the primary install — verified, not assumed.
+1. Stand up an isolated NightSchool Hermes instance rooted at `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\`, zero shared state with the primary install — verified, not assumed.
 2. Stand up a standing **Architecture Defense lane (Lane F)** that runs recurring drift/boundary/dependency checks, not a one-time gate.
 3. Produce a session-bounded, context-budgeted task breakdown (kanban-ready) usable interchangeably by Codex and Claude sessions, each card stating its own context-read footprint.
 4. Replicate the six-agent architecture + Mission Control dashboard locally, with frontier-first model routing: Nemotron Super as primary, Nemotron Ultra for escalation, Qwen as fallback/mechanical only — no VPS/Tailscale dependency for v1.
@@ -361,7 +361,7 @@ No hard deadline. Phasing below replaces a calendar — each phase gates on the 
 *Context: reads only §1 + your confirmed dir structure. No prior history needed.*
 - [x] Card: Delete `Prototype_workingFiles\.tools\` directory — confirmed gone 2026-06-21.
 - [x] Card: Confirm WSL mount path — **`L:\ → /mnt/l` (type 9p)**. Full path: `/mnt/l/WSL_Projects_Folder/Nightschool_Study/`.
-- [x] Card: Primary Hermes baseline documented — **Hermes Desktop v0.5.6**, config root `C:\Users\larry\AppData\Roaming\Hermes\`, local endpoint `localhost:9119`. Read-only, no modifications. See `isolation_manifest.md`.
+- [x] Card: Primary Hermes baseline documented — **Hermes Desktop v0.5.6**, config root `$APPDATA_ROAMING_ROOT\Hermes\`, local endpoint `localhost:9119`. Read-only, no modifications. See `isolation_manifest.md`.
 - [x] Card: Ollama confirmed — **`qwen3.6:35b-a3b` (23.9GB)** on `localhost:11434`. Test call returned `'ok'`. PASS.
 - [x] Card: Port audit complete — ports 3000, 9000, 9119, 11434 in use. **NightSchool reserved range: 8100–8199**. Dashboard primary: 8100.
 - [x] Card: `handoffs\` folder present.
@@ -382,17 +382,17 @@ No hard deadline. Phasing below replaces a calendar — each phase gates on the 
   - `HERMES_DESKTOP_USER_DATA_DIR` — redirects all Electron userData (connection.json, active-profile.json, GUI state). Source-confirmed in `electron/main.cjs` lines 112–116 of app.asar.
   - `HERMES_HOME` — redirects backend agent root (venv, profiles, logs, bootstrap cache). Source-confirmed in `electron/bootstrap-runner.cjs`.
   - `HERMES_DESKTOP_HERMES_ROOT` — pins the desktop to the existing shared Hermes agent checkout so NightSchool can reuse code without entering the bootstrap path.
-  - Hermes.exe location: `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
+  - Hermes.exe location: `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
 - [ ] Card: Create and approve the safe NightSchool Hermes launch script — PowerShell `.ps1` at `scripts\2026-06-21-075947_launch_hermes_nightschool_safe_reuse.ps1` setting:
-  - `HERMES_DESKTOP_USER_DATA_DIR = C:\Users\larry\AppData\Roaming\Hermes-NightSchool`
-  - `HERMES_HOME = C:\Users\larry\.hermes-nightschool`
-  - `HERMES_DESKTOP_HERMES_ROOT = C:\Users\larry\.hermes\hermes-agent`
+  - `HERMES_DESKTOP_USER_DATA_DIR = $APPDATA_ROAMING_ROOT\Hermes-NightSchool`
+  - `HERMES_HOME = $USER_HOME\.hermes-nightschool`
+  - `HERMES_DESKTOP_HERMES_ROOT = $USER_HOME\.hermes\hermes-agent`
   - clear any inherited `HERMES_DESKTOP_REMOTE_URL` and `HERMES_DESKTOP_REMOTE_TOKEN`
   - block launch if any primary Hermes desktop process is still running
   - optionally trigger the two Policy C Kopia baseline snapshots before launch
-  - Then launch: `C:\Users\larry\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
+  - Then launch: `$USER_HOME\.hermes\hermes-agent\apps\desktop\release\win-unpacked\Hermes.exe`
 - [ ] Card: First NightSchool Hermes launch — run the safe-reuse launch script; confirm `Hermes-NightSchool\connection.json` is created; verify primary `Hermes\connection.json` is unchanged (Lane F check before and after).
-- [ ] Card: Verify shared-code Phase 1A behavior — confirm NightSchool writes land in `Hermes-NightSchool\` and `.hermes-nightschool\`, while code still resolves from `C:\Users\larry\.hermes\hermes-agent`.
+- [ ] Card: Verify shared-code Phase 1A behavior — confirm NightSchool writes land in `Hermes-NightSchool\` and `.hermes-nightschool\`, while code still resolves from `$USER_HOME\.hermes\hermes-agent`.
 - [ ] Card: Verify current local backend behavior — confirm the desktop uses the runtime-assigned local backend port and does not rely on a fixed NightSchool `connection.json` port override.
 - [ ] Card: Confirm Ollama → qwen3.6:35b-a3b is reachable from the NightSchool Hermes profile (not assumed — verify NightSchool calls the endpoint and receives a response).
 - [ ] Card: Confirm per-agent routing defaults — which agents stay local vs. escalate to Nemotron Super. Resolve based on observed behavior, not pre-decision.
@@ -466,3 +466,5 @@ Phase 0 is complete. The next work is to finish the approved Phase 1A alignment:
 1. Update Lane F documents (`isolation_manifest.md`, `DEPENDENCIES.md`, handoff notes) to reflect the sequential shared-code lane and Kopia boundary rules.
 2. Finalize the safe-reuse launcher so it blocks concurrent primary Hermes use, pins `HERMES_DESKTOP_HERMES_ROOT`, and optionally records Policy C Kopia baselines before launch.
 3. Run the first controlled NightSchool launch only after those guardrails are in place and the primary Hermes desktop is closed.
+
+

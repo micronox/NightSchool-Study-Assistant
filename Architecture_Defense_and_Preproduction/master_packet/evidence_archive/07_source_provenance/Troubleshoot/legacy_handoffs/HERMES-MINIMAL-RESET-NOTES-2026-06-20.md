@@ -26,11 +26,13 @@
 
 ### Known Config Paths
 
-- `C:\Users\larry\.hermes\config.yaml`
-- `C:\Users\larry\.hermes\.env`
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
-- `C:\Users\larry\.hermes\auth.json`
+- `$USER_HOME\.hermes\config.yaml`
+- `$USER_HOME\.hermes\.env`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
+- `$USER_HOME\.hermes\auth.json`
 
 ### Important Current Finding
 
 - The expected API key variables are not currently present in the active Hermes `.env` files we checked, so auth should be re-established through Hermes setup/auth flow rather than by trusting prior text-file edits.
+
+

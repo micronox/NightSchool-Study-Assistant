@@ -1,6 +1,6 @@
 # Toolchain Verification Note
 **Date:** 2026-06-21  
-**Verified by:** Codex (independent check of Larry's WSL environment)  
+**Verified by:** Codex (independent check of operator's WSL environment)  
 **Status:** PASS — toolchain ready, pre-architecture-defense pass fully closed
 
 ---
@@ -61,7 +61,7 @@ All items from the pre-pass are now resolved:
 | DEPENDENCIES.md created and populated | ✓ Done |
 | isolation_manifest.md created with drift check + routing audit log | ✓ Done |
 | setup_pyenv.sh and setup_nvm.sh scripts written | ✓ Done |
-| `.tools/` cleanup documented (manual step pending) | Pending — Larry's WSL terminal |
+| `.tools/` cleanup documented (manual step pending) | Pending — operator's WSL terminal |
 
 ---
 
@@ -78,3 +78,4 @@ Phase 0 arrives with:
 - All pre-pass decisions resolved
 
 Phase 0 remaining work: WSL mount path confirmation, primary Hermes baseline (read-only), Ollama reachability check, port audit, Lane F skeleton completion, `.tools/` cleanup, verification note.
+

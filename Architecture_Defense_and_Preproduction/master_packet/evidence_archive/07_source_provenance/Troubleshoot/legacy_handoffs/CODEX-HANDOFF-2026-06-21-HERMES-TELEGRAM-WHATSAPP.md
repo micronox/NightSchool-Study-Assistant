@@ -63,10 +63,10 @@ The correct place to run Hermes CLI commands is:
 
 ### Files / Paths That Matter
 
-- `C:\Users\larry\.hermes\.env`
-- `C:\Users\larry\.hermes\config.yaml`
-- `C:\Users\larry\AppData\Roaming\Hermes\connection.json`
-- `C:\Users\larry\Documents\Troubleshoot\HERMES-MINIMAL-RESET-NOTES-2026-06-20.md`
+- `$USER_HOME\.hermes\.env`
+- `$USER_HOME\.hermes\config.yaml`
+- `$APPDATA_ROAMING_ROOT\Hermes\connection.json`
+- `$TROUBLESHOOT_ROOT\HERMES-MINIMAL-RESET-NOTES-2026-06-20.md`
 
 ### Connection / Config State
 
@@ -131,3 +131,5 @@ Do not:
 Hermes is no longer “down.”
 
 The cloud fallback path is working again in both desktop and dashboard. The immediate next win is to finish Telegram gateway setup and validate messaging from PowerShell. WhatsApp should be treated as a second-phase channel, and local Qwen custom-endpoint repair should stay separate from both.
+
+

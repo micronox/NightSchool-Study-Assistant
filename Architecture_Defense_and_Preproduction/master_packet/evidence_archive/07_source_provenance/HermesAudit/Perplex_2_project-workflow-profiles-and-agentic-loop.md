@@ -114,7 +114,7 @@ Hermes doesn’t dictate repo layout, but all examples assume **project trees li
 On your WSL backend, a maintainable layout is:
 
 ```text
-/home/larry/
+`$WSL_USER_HOME/
   .hermes/                 # all profiles and agent state
     profiles/
       coder/
@@ -219,9 +219,9 @@ For `myku-dev` profile, a repeatable loop could be:
 
 ```bash
 myku-dev chat
-# Prompt: "Scan /home/larry/projects/products/myku. 
+# Prompt: "Scan `$WSL_USER_HOME/projects/products/myku. 
 # Build a markdown map of key directories and entrypoints. 
-# Store it as /home/larry/projects/products/myku/docs/REPO_MAP.md."
+# Store it as `$WSL_USER_HOME/projects/products/myku/docs/REPO_MAP.md."
 ```
 
 Use bundled file tools and possibly a repo‑mapping skill from the Skills Hub.[^14][^11][^13][^15]
@@ -383,4 +383,5 @@ These are all Hermes‑native or maintainer‑endorsed, widely used by advanced 
 [^24]: https://www.reddit.com/r/hermesagent/comments/1t2sqjj/hermes_agent_just_added_real_multiagent/
 
 [^25]: https://docs.openviking.ai/en/agent-integrations/05-hermes
+
 

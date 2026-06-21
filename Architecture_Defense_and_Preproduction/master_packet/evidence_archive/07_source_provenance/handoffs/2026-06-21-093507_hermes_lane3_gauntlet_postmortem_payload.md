@@ -79,14 +79,14 @@ These should be copied into the archive selectively and documented in `07_source
 
 - `L:\Claude_workingFolder\HermesAudit`
 - `L:\WSL\hermes-specs`
-- `C:\Users\larry\Documents\Troubleshoot`
+- `$TROUBLESHOOT_ROOT`
 
 Also pull the strongest current NightSchool-side artifacts from:
 
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\handoffs`
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\PRD`
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\isolation_manifest.md`
-- `L:\WSL_Projects_Folder\Nightschool_Study\Prototype_workingFiles\DEPENDENCIES.md`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\handoffs`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\PRD`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\isolation_manifest.md`
+- `$PROJECTS_ROOT\Nightschool_Study\Prototype_workingFiles\DEPENDENCIES.md`
 
 ## Highest-value artifacts to include
 
@@ -103,7 +103,7 @@ Also pull the strongest current NightSchool-side artifacts from:
 ### `00_cover_letter`
 
 - `draft_cover_note.md`
-  - a polished first-pass note Larry can rewrite into the final email
+  - a polished first-pass note operator can rewrite into the final email
 - `executive_summary.md`
   - short and readable
 - `timeline.md`
@@ -145,4 +145,6 @@ Before declaring complete, verify:
 
 ## Operator note
 
-Larry will write the final email himself. Hermes should still produce a strong draft cover note and summary package so Larry only has to massage tone and connect the final email.
+operator will write the final email himself. Hermes should still produce a strong draft cover note and summary package so operator only has to massage tone and connect the final email.
+
+
