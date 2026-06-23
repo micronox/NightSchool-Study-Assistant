@@ -3,23 +3,23 @@
 This packet now has two intended forms:
 
 1. The full working packet in the repository root, which preserves provenance and internal review context.
-2. `external_share_candidate/`, which is the recommended starting package for first-pass external review.
+2. [external_share_candidate/](../../external_share_candidate/), which is the recommended starting package for first-pass external review.
 
 ## Recommended package for External Review
 
-Send `external_share_candidate/` first. It contains:
+Send [external_share_candidate/](../../external_share_candidate/) first. It contains:
 
-- `00_cover_letter/`
-- `index/`
-- `evidence_archive/01_pitch_origin/`
-- `evidence_archive/02_recovery_and_audit/`
-- `evidence_archive/03_architecture_defense/`
-- `evidence_archive/04_nightschool_scope/`
-- `evidence_archive/05_validation_checkpoints/`
-- `evidence_archive/06_supporting_briefs/`
-- a recipient-facing `README_START_HERE.md`
+- [00_cover_letter/](../../external_share_candidate/00_cover_letter/)
+- [index/](../../external_share_candidate/index/)
+- [evidence_archive/01_pitch_origin/](../../external_share_candidate/evidence_archive/01_pitch_origin/)
+- [evidence_archive/02_recovery_and_audit/](../../external_share_candidate/evidence_archive/02_recovery_and_audit/)
+- [evidence_archive/03_architecture_defense/](../../external_share_candidate/evidence_archive/03_architecture_defense/)
+- [evidence_archive/04_nightschool_scope/](../../external_share_candidate/evidence_archive/04_nightschool_scope/)
+- [evidence_archive/05_validation_checkpoints/](../../external_share_candidate/evidence_archive/05_validation_checkpoints/)
+- [evidence_archive/06_supporting_briefs/](../../external_share_candidate/evidence_archive/06_supporting_briefs/)
+- a recipient-facing [README_START_HERE.md](../../external_share_candidate/README_START_HERE.md)
 
-It intentionally excludes `evidence_archive/07_source_provenance/`, which is valuable for internal traceability but heavy for first-pass external review.
+It intentionally excludes [evidence_archive/07_source_provenance/](../evidence_archive/07_source_provenance/), which is valuable for internal traceability but heavy for first-pass external review.
 
 ## Why the split exists
 
@@ -27,7 +27,7 @@ The curated packet tells the story in 28 files. The raw provenance folder curren
 
 ## Owner actions before sending
 
-1. Personalize `00_cover_letter/draft_cover_note.md` in Larry's voice.
+1. Personalize [00_cover_letter/draft_cover_note.md](../../external_share_candidate/00_cover_letter/draft_cover_note.md) in Larry's voice.
 2. Decide whether the recipient needs the original Gauntlet or `myLearningSidekick` pitch as independent continuity evidence.
 3. Leave the 450 GB recovery claim out of the main packet unless the recipient specifically needs it. Pre-format troubleshooting evidence exists from the June 11, 2026 and June 17, 2026 dependency/repository audits, with a timestamped archive at `K:\Onyx_Repo\Troubleshoot`, but that deeper proof is optional rather than required for the first handoff.
 4. Leave post-launch claims out until the Phase 1A operational checks have actually passed.
@@ -44,4 +44,4 @@ The curated packet tells the story in 28 files. The raw provenance folder curren
 
 ## If deeper proof is requested
 
-Only then consider sharing selected materials from `07_source_provenance/`, after a necessity and disclosure review of the exact subfolders involved.
+Only then consider sharing selected materials from [07_source_provenance/](../evidence_archive/07_source_provenance/), after a necessity and disclosure review of the exact subfolders involved.

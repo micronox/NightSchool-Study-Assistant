@@ -4,7 +4,7 @@ This folder holds the executive-level packet source that can be refined, exporte
 
 ## Source file
 
-- `Executive_Summary_Packet.md`
+- [Executive_Summary_Packet.md](Executive_Summary_Packet.md)
 
 ## Intended use
 

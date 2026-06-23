@@ -154,10 +154,10 @@ The foundation was verified, the unsafe plan was rejected, and the safer plan wa
 
 ### Recommended follow-up reading
 
-1. `Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md`
-2. `Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/executive_summary.md`
-3. `Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/timeline.md`
-4. `Architecture_Defense_and_Preproduction/external_share_candidate/index/source_map.md`
+1. [Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md](../Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md)
+2. [Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/executive_summary.md](../Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/executive_summary.md)
+3. [Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/timeline.md](../Architecture_Defense_and_Preproduction/external_share_candidate/00_cover_letter/timeline.md)
+4. [Architecture_Defense_and_Preproduction/external_share_candidate/index/source_map.md](../Architecture_Defense_and_Preproduction/external_share_candidate/index/source_map.md)
 
 ### Canonical reference
 

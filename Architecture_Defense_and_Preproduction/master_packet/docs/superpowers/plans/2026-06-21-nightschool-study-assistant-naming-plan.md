@@ -13,15 +13,15 @@
 ### Task 1: Standardize reader-facing naming
 
 **Files:**
-- Modify: `README_START_HERE.md`
-- Modify: `00_cover_letter/draft_cover_note.md`
-- Modify: `00_cover_letter/executive_summary.md`
-- Modify: `00_cover_letter/timeline.md`
-- Modify: `00_cover_letter/lessons_learned.md`
-- Modify: `index/README.md`
-- Modify: `index/artifact_manifest.md`
-- Modify: `index/source_map.md`
-- Modify: `index/verification_notes.md`
+- Modify: [README_START_HERE.md](../../../README_START_HERE.md)
+- Modify: [00_cover_letter/draft_cover_note.md](../../../00_cover_letter/draft_cover_note.md)
+- Modify: [00_cover_letter/executive_summary.md](../../../00_cover_letter/executive_summary.md)
+- Modify: [00_cover_letter/timeline.md](../../../00_cover_letter/timeline.md)
+- Modify: [00_cover_letter/lessons_learned.md](../../../00_cover_letter/lessons_learned.md)
+- Modify: [index/README.md](../../../index/README.md)
+- Modify: [index/artifact_manifest.md](../../../index/artifact_manifest.md)
+- Modify: [index/source_map.md](../../../index/source_map.md)
+- Modify: [index/verification_notes.md](../../../index/verification_notes.md)
 
 - [ ] Replace narrative uses of the software name with `NightSchool Study Assistant`.
 - [ ] Preserve literal filenames and archive paths containing `NightSchool` or `nightschool`.
@@ -30,7 +30,7 @@
 ### Task 2: Add the project overview
 
 **Files:**
-- Modify: `index/README.md`
+- Modify: [index/README.md](../../../index/README.md)
 
 - [ ] Explain that the software is a mission-control system forked from Hermes to complete NightSchool class tasks.
 - [ ] Describe Bill as Telegram orchestrator and Vault, Scholar, Quiz Master, Planner, and Dev as Discord specialists.

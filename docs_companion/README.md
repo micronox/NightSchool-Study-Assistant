@@ -15,18 +15,18 @@ Turn the packet into a guided, website-like reading experience:
 
 After the GitHub repo exists, replace the placeholder repo URL in the docs with the final location:
 
-`https://github.com/micronox/NightSchool-Study-Assistant`
+[micronox/NightSchool-Study-Assistant](https://github.com/micronox/NightSchool-Study-Assistant)
 
 ## Current scaffold
 
-- `docs/intro.md`
-- `docs/executive-summary.md`
-- `docs/timeline.md`
-- `docs/architecture-overview.md`
-- `docs/lessons-learned.md`
-- `docs/evidence-boundary.md`
-- `docusaurus.config.ts`
-- `sidebars.ts`
+- [docs/intro.md](docs/intro.md)
+- [docs/executive-summary.md](docs/executive-summary.md)
+- [docs/timeline.md](docs/timeline.md)
+- [docs/architecture-overview.md](docs/architecture-overview.md)
+- [docs/lessons-learned.md](docs/lessons-learned.md)
+- [docs/evidence-boundary.md](docs/evidence-boundary.md)
+- [docusaurus.config.ts](docusaurus.config.ts)
+- [sidebars.ts](sidebars.ts)
 
 ## Notes
 

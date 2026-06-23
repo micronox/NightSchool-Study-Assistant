@@ -37,25 +37,24 @@ Product Requirement Documents are executed through an evidence-backed architectu
 
 ## Structure
 
-- `00_cover_letter/` – Draft cover note, executive summary, timeline, and lessons learned for quick consumption.
-- `evidence_archive/` – Themed folders containing copied markdown proof and supporting artifacts.
-- `index/` – This folder, containing navigational and reference documents.
+- [00_cover_letter/](../00_cover_letter/) – Draft cover note, executive summary, timeline, and lessons learned for quick consumption.
+- [evidence_archive/](../evidence_archive/) – Themed folders containing copied markdown proof and supporting artifacts.
+- [index/](./) – This folder, containing navigational and reference documents.
 
 ## How to Read
 
-1. Start with the **executive summary** (`00_cover_letter/executive_summary.md`) for a high-level overview.
-2. Review the **timeline** (`00_cover_letter/timeline.md`) for chronological reconstruction.
-3. Examine the **lessons learned** (`00_cover_letter/lessons_learned.md`) for insights on architecture defense, validation, scoped builds, and cost-aware tooling.
-4. Dive into the **evidence_archive** to verify claims:
-   - `01_pitch_origin` – Original intent and pitch.
-   - `02_recovery_and_audit` – Audit, recovery, and toolchain verification.
-   - `03_architecture_defense` – Architecture defense artifacts, ADRs, architecture reviews.
-   - `04_nightschool_scope` – NightSchool Study Assistant PRD, scope, dependencies, and isolation manifest. The folder name is preserved for provenance.
-   - `05_validation_checkpoints` – Phase 0, Phase 1A validation, execution specs.
-   - `06_supporting_briefs` – Kopia Lane F spec, Hermes parallel payload, etc.
-   - `07_source_provenance` – Raw source folders and files for provenance tracking.
-5. Use the **artifact manifest** (`index/artifact_manifest.md`) and **source map** (`index/source_map.md`) to trace claims to specific artifacts.
-6. Read **verification notes** (`index/verification_notes.md`) for evidence gaps and pre-handoff review items.
+1. Start with the [executive summary](../00_cover_letter/executive_summary.md) for a high-level overview.
+2. Review the [timeline](../00_cover_letter/timeline.md) for chronological reconstruction.
+3. Examine the [lessons learned](../00_cover_letter/lessons_learned.md) for insights on architecture defense, validation, scoped builds, and cost-aware tooling.
+4. Dive into the [evidence_archive](../evidence_archive/) to verify claims:
+   - [01_pitch_origin](../evidence_archive/01_pitch_origin/) – Original intent and pitch.
+   - [02_recovery_and_audit](../evidence_archive/02_recovery_and_audit/) – Audit, recovery, and toolchain verification.
+   - [03_architecture_defense](../evidence_archive/03_architecture_defense/) – Architecture defense artifacts, ADRs, architecture reviews.
+   - [04_nightschool_scope](../evidence_archive/04_nightschool_scope/) – NightSchool Study Assistant PRD, scope, dependencies, and isolation manifest. The folder name is preserved for provenance.
+   - [05_validation_checkpoints](../evidence_archive/05_validation_checkpoints/) – Phase 0, Phase 1A validation, execution specs.
+   - [06_supporting_briefs](../evidence_archive/06_supporting_briefs/) – Kopia Lane F spec, Hermes parallel payload, etc.
+5. Use the [artifact manifest](artifact_manifest.md) and [source map](source_map.md) to trace claims to specific artifacts.
+6. Read [verification notes](verification_notes.md) for evidence gaps and pre-handoff review items.
 
 ## Notes
 

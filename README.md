@@ -13,16 +13,16 @@ This repository captures the June 19-21, 2026 recovery, architecture review, and
 
 ## Structure
 
-- `Architecture_Defense_and_Preproduction/` - canonical packet, provenance, and external share candidate
-- `docs_companion/` - website-like documentation layer
-- `executive_packet/` - executive summary packet source that can later be exported to PDF
+- [Architecture_Defense_and_Preproduction/](Architecture_Defense_and_Preproduction/) - canonical packet, provenance, and external share candidate
+- [docs_companion/](docs_companion/) - website-like documentation layer
+- [executive_packet/](executive_packet/) - executive summary packet source that can later be exported to PDF
 
 ## Recommended reading order
 
-1. Start with `executive_packet/Executive_Summary_Packet.md`.
-2. Move to `Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md`.
-3. Use `docs_companion/` as the guided presentation layer.
-4. Drop into `Architecture_Defense_and_Preproduction/master_packet/` when deeper provenance is needed.
+1. Start with [executive_packet/Executive_Summary_Packet.md](executive_packet/Executive_Summary_Packet.md).
+2. Move to [Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md](Architecture_Defense_and_Preproduction/external_share_candidate/README_START_HERE.md).
+3. Use [docs_companion/](docs_companion/) as the guided presentation layer.
+4. Drop into [Architecture_Defense_and_Preproduction/master_packet/](Architecture_Defense_and_Preproduction/master_packet/) when deeper provenance is needed.
 
 ## Origin
 
@@ -35,4 +35,4 @@ This workspace was scaffolded from the verified Gauntlet AI deliverables packagi
 
 ## Repository
 
-GitHub: `https://github.com/micronox/NightSchool-Study-Assistant`
+GitHub: [micronox/NightSchool-Study-Assistant](https://github.com/micronox/NightSchool-Study-Assistant)

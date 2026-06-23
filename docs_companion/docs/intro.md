@@ -17,4 +17,4 @@ The packet documents the June 19-21, 2026 recovery, verification, and architectu
 
 The repository source of truth is intended to live at:
 
-`https://github.com/micronox/NightSchool-Study-Assistant`
+[micronox/NightSchool-Study-Assistant](https://github.com/micronox/NightSchool-Study-Assistant)
